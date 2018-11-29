@@ -1,0 +1,20 @@
+{
+	"name": "chee-router",
+	"version": "1.0.0",
+	"main": "index.js",
+	"module": "main.js",
+	"scripts": {
+		"start": "micro -l tcp://0.0.0.0:80",
+		"start:developer": "micro-dev -l tcp://0.0.0.0:80"
+	},
+	"author": "chee <chee@snoot.club>",
+	"license": "MPL-2.0",
+	"description": "",
+	"dependencies": {
+		"fs-extra": "^7.0.1",
+		"micro": "^9.3.3"
+	},
+	"devDependencies": {
+		"micro-dev": "^3.0.0"
+	}
+}
