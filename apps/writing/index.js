@@ -1,7 +1,7 @@
-let {send} = require("micro")
-let fs = require("fs-extra")
 let path = require("path")
+let pass = require("../../library/pass.js")(path.resolve(
+	__dirname,
+	"apps"
+))
 
-module.exports = async (request, response) => {
-	return `in writing~! ${request.url}`
-}
+module.exports = pass
