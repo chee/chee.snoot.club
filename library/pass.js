@@ -18,7 +18,7 @@ let createRequest = (...data) =>
 module.exports = appsRoot => async (request, response) => {
 	let appName = request.url.split("/")[1]
 
-	let appDirectory = path.resolve(appsRoot, appName)
+	let appDirectory = appName && path.resolve(appsRoot, appName)
 
 	if (!appName || !await fs.exists(appDirectory)) {
 		return Promise.reject({

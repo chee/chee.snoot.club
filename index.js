@@ -14,7 +14,11 @@ let serveOptions = {
 
 module.exports = async (request, response) => {
 	return pass(request, response)
-		.catch(() => {
+		.catch(error => {
+			if (error.status != 404) {
+				return Promise.reject(error)
+			}
+
 			console.log('no such app, trying files!')
 			return serve(request, response, serveOptions)
 		})
