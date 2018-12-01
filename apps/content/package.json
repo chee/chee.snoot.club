@@ -1,5 +1,5 @@
 {
-	"name": "chee-writing-router",
+	"name": "chee-content-router",
 	"version": "1.0.0",
 	"main": "index.js",
 	"module": "main.js",

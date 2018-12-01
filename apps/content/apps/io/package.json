@@ -1,13 +1,13 @@
 {
-	"name": "chee-writing-io",
+	"name": "chee-content-io",
 	"version": "1.0.0",
 	"main": "index.js",
 	"module": "main.js",
 	"scripts": {
 		"start": "micro -l tcp://0.0.0.0:80",
 		"test": "micro-dev -l tcp://0.0.0.0:26969",
-		"build": "echo ':)'",
-		"install": "npm run-script -s build; for app in apps/*; do cd $app; npm install; done"
+		"build": "echo 'io (:'",
+		"install": "npm run-script -s build"
 	},
 	"author": "chee <chee@snoot.club>",
 	"license": "MPL-2.0",
