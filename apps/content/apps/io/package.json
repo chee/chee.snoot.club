@@ -1,0 +1,24 @@
+{
+	"name": "chee-writing-io",
+	"version": "1.0.0",
+	"main": "index.js",
+	"module": "main.js",
+	"scripts": {
+		"start": "micro -l tcp://0.0.0.0:80",
+		"test": "micro-dev -l tcp://0.0.0.0:26969",
+		"build": "echo ':)'",
+		"install": "npm run-script -s build; for app in apps/*; do cd $app; npm install; done"
+	},
+	"author": "chee <chee@snoot.club>",
+	"license": "MPL-2.0",
+	"description": "",
+	"dependencies": {
+		"fs-extra": "^7.0.1",
+		"micro": "^9.3.3",
+		"node-git": "0.0.0",
+		"serve-handler": "^5.0.7"
+	},
+	"devDependencies": {
+		"micro-dev": "^3.0.0"
+	}
+}
