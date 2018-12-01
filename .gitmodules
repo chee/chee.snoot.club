@@ -1,0 +1,3 @@
+[submodule "apps/content/apps/io/bits"]
+	path = apps/content/apps/io/bits
+	url = ./apps/content/apps/io/bits
