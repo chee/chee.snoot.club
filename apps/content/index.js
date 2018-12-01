@@ -6,7 +6,7 @@ let pass = require("../../library/pass.js")(path.resolve(
 ))
 
 let serveOptions = {
-	public: "website",
+	public: path.resolve(__dirname, "website"),
 	cleanUrls: true,
 	renderSingle: true
 }

@@ -86,3 +86,6 @@ as a boolean `everything` query parameter.
 
 only body is required.
 
+## internals
+
+internally the objects are stored in a git submodule of this

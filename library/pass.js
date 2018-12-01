@@ -23,13 +23,13 @@ module.exports = appsRoot => async (request, response) => {
 	if (!appName || !await fs.exists(appDirectory)) {
 		return Promise.reject({
 			status: 404,
-			message: 'no such app'
+			message: `no such app ${appsRoot}/${appName}`
 		})
 	}
 
 	let app = require(appDirectory)
 
-	let nextUrl = request.url.slice(appName.length + 1)
+	let nextUrl = request.url.slice(appName.length + 1) || '/'
 
 	let nextRequest = createRequest(
 		request,
