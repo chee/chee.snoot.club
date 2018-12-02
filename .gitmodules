@@ -1,3 +1,0 @@
-[submodule "apps/content/contents"]
-	path = apps/content/contents
-	url = git@github.com:chee/contents
