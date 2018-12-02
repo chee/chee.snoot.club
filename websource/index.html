@@ -1,17 +1,102 @@
 <!doctype html>
-<meta charset=utf-8>
-<title>chee the snoot</title>
-<meta name=viewport content=width=device-width,initial-scale=1>
+<META charset=utf-8>
+<TITLE>chee is a snoot</TITLE>
+<META name=viewport content=width=device-width,initial-scale=1>
 
-<style>
-</style><pre>
-welcome to
-the website of
+<STYLE>
+	::selection {
+		background: #ff6;
+		color: black;
+	}
 
-professional person
-	<q>chee rabbits</q>
+	@keyframes batenblink {
+		0%,
+		80% {
+			color: #f36;
+		}
 
-<a href=mailto:chee@snoot.club>email me</a>
-<a href=https://github.com/chee>steal my code</a>
-<a href=https://twitter.com/snootgirl>dont @ me</a>
-</pre>
+		100% {
+			color: #ff3;
+		}
+	}
+
+	@keyframes winglight {
+		0%,
+		80% {
+			color: #000;
+		}
+
+		100% {
+			color: #606;
+		}
+	}
+
+	@media (min-width: 420px) {
+		html {
+			margin: 1.5em;
+			font-size: 1.5em;
+		}
+	}
+
+	@media (min-width: 600px) {
+		html {
+			margin: 2em;
+			font-size: 2em;
+		}
+	}
+
+	.intro {
+		text-align: center;
+	}
+
+	.chee-name {
+		display: block;
+		margin: .5em auto;
+		font-size: 2em;
+		border: 2px solid pink;
+		box-shadow: 0 0 2px 2px #ff3;
+		width: 14ex;
+		text-align: center;
+		animation: batenblink 1.55s alternate infinite ease;
+	}
+
+	.chee-name:before,
+	.chee-name:after {
+		color: black;
+		animation: winglight 1.5s alternate infinite ease;
+	}
+
+	a {
+		color: #09f;
+	}
+
+	a:visited {
+		color: #f39;
+	}
+</STYLE>
+
+<MAIN>
+	<P class="intro">
+		You have found the domain of Professional Person <BR/>
+		<Q class="chee-name"> chee rabbits </Q>
+	</P>
+
+	<P>
+		Ways to leave:
+	</P>
+
+	<UL>
+		<LI>
+			<A href=https://github.com/chee>
+				Read chee's computer code
+			</A>
+		<LI>
+			<A href=https://twitter.com/snootgirl>
+				Visit chee's Twitter.com profile
+			</A>
+		<LI>
+			<A href=mailto:chee@snoot.club>
+				or, Contact chee via E-Mail
+			</A>
+	</UL>
+</MAIN>
