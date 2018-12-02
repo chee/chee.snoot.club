@@ -1,0 +1,8 @@
+#!/bin/bash
+echo huh
+
+for app in apps/*; do
+	echo ">" running "$*" in "$app"
+	echo npm run-script --prefix "$app" $*
+	npm run-script --prefix "$app" $*
+done

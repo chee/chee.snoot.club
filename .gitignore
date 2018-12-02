@@ -1,1 +1,4 @@
 node_modules/
+/website/
+.cache/
+dist/

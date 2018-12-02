@@ -5,9 +5,10 @@
 	"module": "main.js",
 	"scripts": {
 		"start": "micro -l tcp://0.0.0.0:80",
-		"test": "micro-dev -l tcp://0.0.0.0:26969",
-		"build": "echo 'built :)'",
-		"install": "npm run-script -s build; for app in apps/*; do cd $app; npm install; cd -; done;"
+		"test": "concurrently 'micro-dev -l tcp://0.0.0.0:26969' 'npm run-script watch'",
+		"build": "concurrently 'parcel build websource/index.html -d website' './library/run-script-in-apps build'",
+		"watch": "concurrently 'parcel watch websource/index.html' 'ls' './library/run-script-in-apps watch'",
+		"install": "concurrently 'npm run-script -s build' './library/run-script-in-apps install'"
 	},
 	"author": "chee <chee@snoot.club>",
 	"license": "MPL-2.0",
@@ -18,6 +19,10 @@
 		"serve-handler": "^5.0.7"
 	},
 	"devDependencies": {
-		"micro-dev": "^3.0.0"
-	}
+		"concurrently": "^4.1.0",
+		"micro-dev": "^3.0.0",
+		"parcel-bundler": "^1.10.3",
+		"parcel-plugin-static-files-copy": "^1.2.4"
+	},
+	"staticPath": "copy"
 }

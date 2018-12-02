@@ -6,8 +6,9 @@
 	"scripts": {
 		"start": "micro -l tcp://0.0.0.0:80",
 		"test": "micro-dev -l tcp://0.0.0.0:26969",
-		"build": "echo ':)'",
-		"install": "npm run-script -s build; for app in apps/*; do cd $app; npm install; cd -; done"
+		"build": "concurrently 'echo :)' '../../library/run-script-in-apps build'",
+		"install": "concurrently 'npm run-script -s build' '../../library/run-script-in-apps install'",
+		"watch": "parcel watch websource/index.html"
 	},
 	"author": "chee <chee@snoot.club>",
 	"license": "MPL-2.0",
@@ -15,9 +16,11 @@
 	"dependencies": {
 		"fs-extra": "^7.0.1",
 		"micro": "^9.3.3",
+		"parcel-bundler": "^1.10.3",
 		"serve-handler": "^5.0.7"
 	},
 	"devDependencies": {
+		"concurrently": "^4.1.0",
 		"micro-dev": "^3.0.0"
 	}
 }
