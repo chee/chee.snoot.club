@@ -6,8 +6,8 @@
 	"scripts": {
 		"start": "micro -l tcp://0.0.0.0:80",
 		"test": "micro-dev -l tcp://0.0.0.0:26969",
-		"build": "concurrently 'echo :)' '../../library/run-script-in-apps build'",
-		"install": "concurrently 'npm run-script -s build' '../../library/run-script-in-apps install'",
+		"build": "concurrently 'echo hello i am build' 'sh ../../library/run-script-in-apps build'",
+		"install": "concurrently 'npm run-script -s build' 'sh ../../library/run-script-in-apps install'",
 		"watch": "parcel watch websource/index.html"
 	},
 	"author": "chee <chee@snoot.club>",

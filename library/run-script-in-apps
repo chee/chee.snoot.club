@@ -1,8 +1,10 @@
-#!/bin/bash
-echo huh
+#!/bin/sh
+
+do_it_to_em () {
+	echo "> $*"
+	eval "$*"
+}
 
 for app in apps/*; do
-	echo ">" running "$*" in "$app"
-	echo npm run-script --prefix "$app" $*
-	npm run-script --prefix "$app" $*
+	do_it_to_em npm run-script --prefix "$app" --scripts-prepend-node-path=true $*
 done

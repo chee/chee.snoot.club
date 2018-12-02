@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "micro -l tcp://0.0.0.0:80",
 		"test": "micro-dev -l tcp://0.0.0.0:26969",
-		"build": "echo 'io (:'",
+		"build": "echo iobulb",
 		"install": "npm run-script -s build"
 	},
 	"author": "chee <chee@snoot.club>",
