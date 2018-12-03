@@ -64,19 +64,21 @@
 		display: inline-block;
 		margin: .5em auto;
 		padding: 0 0.8ex;
-		font-family: futura, sans-serif;
-		font-size: 1.8em;
+		font-family: fantasy;
+		font-size: 1.4em;
 		border: 2px solid pink;
 		box-shadow: 0 0 2px 2px #ff3;
 		text-align: center;
 		animation: batenblink 1.55s alternate infinite ease;
+		quotes: "\201C" "\201D";
 	}
 
-	.chee-name:before,
-	.chee-name:after {
+	.chee-name::before,
+	.chee-name::after {
 		color: black;
 		animation: winglight 1.5s alternate infinite ease;
-		font-family: serif;
+		font-family: times new roman, serif;
+		font-size: 1.4em;
 	}
 
 	a {
@@ -86,12 +88,35 @@
 	a:visited {
 		color: #f39;
 	}
+
+	li {
+		white-space: nowrap;
+		clear: left;
+	}
+
+	.leavers-link {
+		display: block;
+		white-space: normal;
+		vertical-align: top;
+	}
+
+	li:last-child .leavers-link::first-letter {
+		text-transform: lowercase;
+	}
+
+	li:last-child::before {
+		content: "Or, ";
+		margin-right: 0.4ch;
+		float: left;
+	}
 </STYLE>
 
 <MAIN>
 	<P class="intro">
 		You have found the domain of Professional Person <BR/>
-		<Q class="chee-name"> chee rabbits </Q>
+		<Q
+			cite="/"
+			class="chee-name"> chee rabbits </Q>
 	</P>
 
 	<P>
@@ -100,16 +125,25 @@
 
 	<UL>
 		<LI>
-			<A href=https://github.com/chee>
-				Read chee's computer code
+			<A
+				class=leavers-link
+				href=https://github.com/chee>
+				Read the source code of chee's computer programs
 			</A>
+		</LI>
 		<LI>
-			<A href=https://twitter.com/snootgirl>
-				Visit chee's Twitter.com profile
+			<A
+				class=leavers-link
+				href=https://twitter.com/snootgirl>
+				Visit chee's Twitter.com profile (a kind of on-line diary)
 			</A>
+		</LI>
 		<LI>
-			<A href=mailto:chee@snoot.club>
-				or, Contact chee via E-Mail
+			<A
+				class=leavers-link
+				href=mailto:chee@snoot.club>
+				Contact chee via E-Mail (a kind of on-line postal service)
 			</A>
+		</LI>
 	</UL>
 </MAIN>
