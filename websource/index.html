@@ -46,6 +46,24 @@
 		}
 	}
 
+	@keyframes shake {
+		0%, 50% {
+			transform: translate(-2px, -2px);
+		}
+
+		33%, 66% {
+			transform: translate(2px, 2px);
+		}
+
+		25%, 75% {
+			transform: translate(2px, -2px);
+		}
+
+		100% {
+			transform: translate(-2px, 2px);
+		}
+	}
+
 	html {
 		font-family: din, sans-serif;
 	}
@@ -92,8 +110,9 @@
 		border: 2px solid pink;
 		box-shadow: 0 0 2px 2px #ff3;
 		text-align: center;
-		animation: batenblink 1.55s alternate infinite ease;
+		animation: batenblink 1.55s alternate infinite ease, wobble 100s infinite;
 		quotes: "\201C" "\201D";
+		background: white;
 	}
 
 	.chee-name::before,
@@ -122,6 +141,10 @@
 		display: block;
 		white-space: normal;
 		vertical-align: top;
+	}
+
+	.leavers-link:hover {
+		animation: shake 0.2s infinite ease;
 	}
 
 	li:last-child .leavers-link::first-letter {
