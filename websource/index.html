@@ -31,6 +31,10 @@
 		}
 	}
 
+	html {
+		font-family: din, sans-serif;
+	}
+
 	@media (min-width: 420px) {
 		html {
 			margin: 1.5em;
@@ -50,12 +54,13 @@
 	}
 
 	.chee-name {
-		display: block;
+		display: inline-block;
 		margin: .5em auto;
-		font-size: 2em;
+		padding: 0 0.8ex;
+		font-family: futura, sans-serif;
+		font-size: 1.8em;
 		border: 2px solid pink;
 		box-shadow: 0 0 2px 2px #ff3;
-		width: 14ex;
 		text-align: center;
 		animation: batenblink 1.55s alternate infinite ease;
 	}
@@ -64,6 +69,7 @@
 	.chee-name:after {
 		color: black;
 		animation: winglight 1.5s alternate infinite ease;
+		font-family: serif;
 	}
 
 	a {
