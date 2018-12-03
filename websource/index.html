@@ -31,8 +31,31 @@
 		}
 	}
 
+	@keyframes wobble {
+		0%, 40% {
+			transform: translateX(-1px);
+		}
+
+		22%, 66% {
+			transform: translateX(4px);
+		}
+
+		55%, 88% {
+			transform: translateY(2px);
+			transform: translateX(-2px);
+		}
+	}
+
 	html {
 		font-family: din, sans-serif;
+	}
+
+	@media tv {
+		html::before {
+			content: "i'm on tv!";
+			display: block;
+			animation: batenblink 0.2s infinite, wobble .5s infinite;
+		}
 	}
 
 	@media (min-width: 300px) {
