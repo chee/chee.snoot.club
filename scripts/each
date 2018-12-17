@@ -35,7 +35,7 @@ let mapNames = async fn => {
 exports.build = () =>
   mapNames(async name =>
     npmRun(
-      `build -- -d website --public-url="/${name}"`,
+      `build -- -d website --public-url=/${name}`,
       getAppPathFromName(name)
     )
   )
@@ -43,7 +43,7 @@ exports.build = () =>
 exports.watch = () =>
   mapNames(async name =>
     npmRun(
-      `watch -- -d website --public-url="/${name}"`,
+      `watch -- -d website --public-url=/${name}`,
       getAppPathFromName(name)
     )
   )
