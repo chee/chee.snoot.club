@@ -14,16 +14,21 @@ let getAppPathFromName = name =>
 let getAppPaths = async () =>
   (await getAppNames()).map(getAppPathFromName)
 
-
-let npmRun = (commandString, appPath) => {
+let npmRun = (commandString, appName) => {
   let command = commandString.split(/\s+/)
   return execa("npm", [
     "run-script",
     "--prefix",
-    appPath,
+    getAppPathFromName(appName),
     "--scripts-prepend-node-path=true",
     ...command
-  ])
+  ], {
+    extendEnv: true,
+    env: {
+      SNOOT_OUTPUT_DIRECTORY: "website",
+      SNOOT_PUBLIC_URL: `/${appName}`
+    }
+  })
 }
 
 let mapNames = async fn => {
@@ -32,30 +37,20 @@ let mapNames = async fn => {
   return Promise.all(promises)
 }
 
-exports.build = () =>
+let createTask = taskName => () =>
   mapNames(async name =>
     npmRun(
-      `build -- -d website --public-url=/${name}`,
-      getAppPathFromName(name)
+      taskName,
+      name
     )
   )
 
-exports.watch = () =>
-  mapNames(async name =>
-    npmRun(
-      `watch -- -d website --public-url=/${name}`,
-      getAppPathFromName(name)
-    )
-  )
+exports.build = createTask("build")
+exports.watch = createTask("watch")
+exports.install = createTask("install")
 
-exports.install = () =>
-  mapNames(async name =>
-    npmRun(
-      "install",
-      getAppPathFromName(name)
-    )
-  )
+let command = process.argv[2]
 
-let command = exports[process.argv[2]]
-
-command && command()
+if (command) {
+  createTask(command)()
+}
