@@ -6,9 +6,9 @@
 	"scripts": {
 		"start": "micro -l tcp://0.0.0.0:80",
 		"test": "micro-dev -l tcp://0.0.0.0:26969",
-		"build": "concurrently 'parcel build websource/index.html -d website' '../../scripts/each build'",
-		"install": "concurrently 'npm run-script -s build' '../../scripts/each install'",
-		"watch": "concurrently 'parcel watch websource/index.html -d website' '../../scripts/each watch'"
+		"build": "concurrently \"parcel build websource/index.html -d ${SNOOT_OUTPUT_DIRECTORY:-website} --public-url ${SNOOT_PUBLIC_URL:-/}\" \"../../scripts/each build\"",
+		"install": "concurrently \"npm run-script -s build\" \"../../scripts/each install\"",
+		"watch": "concurrently \"parcel watch websource/index.html -d ${SNOOT_OUTPUT_DIRECTORY:-website} ${SNOOT_PUBLIC_URL:-/}\" \"../../scripts/each watch\""
 	},
 	"author": "chee <chee@snoot.club>",
 	"license": "MPL-2.0",

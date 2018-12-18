@@ -10,8 +10,9 @@ export let settings = {
 
 export default () => ({context, width, height, playhead}) => {
 	let margin = 400
+	
 	context.fillStyle = "hsl(5, 37%, 94%)"
-
+	context.strokeStyle = context.fillStyle
 	context.strokeWidth = 4
 	context.fillRect(0, 0, width, height)
 
@@ -30,7 +31,7 @@ export default () => ({context, width, height, playhead}) => {
 		width - margin * 2,
 		height - margin * 2,
 	)
-	context.strokeStyle = "white"
+
 	context.moveTo(playhead * width, height / 2)
 	context.lineTo(0, playhead * Math.sin(playhead * width) * height)
 	context.stroke()
