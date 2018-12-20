@@ -9,6 +9,14 @@ let manager = canvasSketch(sketch, {
 
 if (module.hot) {
 	module.hot.dispose(() => {
-		manager.then(manager => console.log(manager.destroy()))
+		manager.then(manager => {
+			manager.dispatch(props => {
+				props.canvas.remove()
+				console.log(props.context)
+				console.log(props)
+			})
+			manager.destroy()
+		})
 	})
 }
+ 
