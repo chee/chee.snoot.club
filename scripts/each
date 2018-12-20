@@ -47,7 +47,9 @@ let createTask = taskName => () =>
 
 exports.build = createTask("build")
 exports.watch = createTask("watch")
-exports.install = createTask("install")
+exports.install = () => {
+  mapNames(async name => execa("npm", "install", "--prefix", getAppPathFromName(appName)))
+}
 
 let command = process.argv[2]
 
