@@ -1,29 +1,23 @@
 {
-	"name": "chee-router",
-	"version": "1.0.0",
-	"main": "index.js",
-	"module": "main.js",
+	"name": "chee.snoot.club",
+	"version": "0.0.0",
+	"main": "node_modules/@snootclub/boop",
 	"scripts": {
-		"start": "micro -l tcp://0.0.0.0:80",
-		"test": "concurrently 'micro-dev -l tcp://0.0.0.0:26969' 'npm run-script watch'",
-		"build": "concurrently 'parcel build websource/index.html -d website' './scripts/each build'",
-		"watch": "concurrently 'parcel watch websource/index.html -d website' './scripts/each watch'",
-		"install": "concurrently 'npm run-script -s build' './scripts/each install'"
+		"start": "npm run-script build && micro -l tcp://0.0.0.0:80",
+		"build": "boop",
+		"watch": "boop",
+		"install": "boop"
 	},
 	"author": "chee <chee@snoot.club>",
-	"license": "MPL-2.0",
+	"license": "GPL-3.0+",
 	"description": "",
 	"dependencies": {
-		"fs-extra": "^7.0.1",
+		"@snootclub/boop": "0.0.0",
 		"micro": "^9.3.3",
 		"serve-handler": "^5.0.7"
 	},
 	"devDependencies": {
-		"concurrently": "^4.1.0",
-		"execa": "^1.0.0",
-		"micro-dev": "^3.0.0",
-		"parcel-bundler": "^1.10.3",
-		"parcel-plugin-static-files-copy": "^1.2.4"
+		"concurrently": "^4.1.0"
 	},
 	"staticPath": "websource/copy"
 }
