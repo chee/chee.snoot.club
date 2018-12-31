@@ -3,7 +3,7 @@
 	"version": "0.0.0",
 	"main": "node_modules/@snootclub/boop",
 	"scripts": {
-		"start": "npm run-script build && micro -l tcp://0.0.0.0:80",
+		"start": "micro -l tcp://0.0.0.0:80",
 		"build": "boop",
 		"watch": "boop",
 		"install": "boop"
