@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "build": "parcel build index.html -d ${SNOOT_OUTPUT_DIRECTORY:-website} --public-url ${SNOOT_PUBLIC_URL:-/}",
-    "watch": "parcel watch index.html -d ${SNOOT_OUTPUT_DIRECTORY:-website} --public-url ${SNOOT_PUBLIC_URL:-/}",
+    "build": "parcel build index.html -d ${BOOP_WEBSITE_DIRECTORY:-website} --public-url ${BOOP_PUBLIC_URL:-/}",
+    "watch": "parcel watch index.html -d ${BOOP_WEBSITE_DIRECTORY:-website} --public-url ${BOOP_PUBLIC_URL:-/}",
     "start": "parcel index.html"
   },
   "keywords": [],
@@ -16,7 +16,6 @@
     "canvas-sketch-util": "^1.6.0"
   },
   "devDependencies": {
-    "canvas-sketch-cli": "^1.1.9",
     "cssnano": "^4.1.8"
   }
 }
