@@ -1,9 +1,12 @@
 let boop = require("@snootclub/boop")
 let {readFile} = require("fs").promises
 let {exec} = require("child_process")
+let {resolve} = require("path")
+
+let rebuildUrlFilePath = resolve(__dirname, ".rebuild-url")
 
 module.exports = async (request, response) => {
-	let rebuildUrl = await readFile(__dirname + "/.rebuild-url")
+	let rebuildUrl = await readFile(rebuildUrlFilePath)
 		.catch(() => null)
 
 	if (rebuildUrl && request.url == rebuildUrl) {
