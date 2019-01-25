@@ -6,7 +6,7 @@ let {resolve} = require("path")
 let rebuildUrlFilePath = resolve(__dirname, ".rebuild-url")
 
 module.exports = async (request, response) => {
-	let rebuildUrl = await readFile(rebuildUrlFilePath)
+	let rebuildUrl = await readFile(rebuildUrlFilePath, "utf-8")
 		.catch(() => null)
 
 	if (rebuildUrl && request.url == rebuildUrl) {
