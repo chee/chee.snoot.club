@@ -1,6 +1,6 @@
 workflow "build and publish" {
   on = "push"
-  resolves = ["HTTP client"]
+  resolves = ["send to tarballs.snoot.club"]
 }
 
 action "master only" {
@@ -20,9 +20,15 @@ action "build" {
   needs = "install"
 }
 
-action "HTTP client" {
-  uses = "swinton/httpie.action@8ab0a0e926d091e0444fcacd5eb679d2e2d4ab3d"
+action "create a tarball" {
+  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
   needs = ["build"]
-  secrets = ["REBUILD_URL"]
-  args = "GET \"https://chee.snoot.club/$REBUILD_URL\""
+  args = "pack"
+}
+
+action "send to tarballs.snoot.club" {
+  uses = "swinton/httpie.action@8ab0a0e926d091e0444fcacd5eb679d2e2d4ab3d"
+  needs = ["create a tarball"]
+  args = "--form POST tarballs.snoot.club pathword=$tarballs_pathword ball@chee.snoot.club-0.0.0.tgz"
+  secrets = ["tarballs_pathword"]
 }
