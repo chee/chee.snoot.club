@@ -18,7 +18,7 @@
 	},
 	"config": {
 		"unsafe-perm": true
-	}
+	},
 	"devDependencies": {},
 	"staticPath": "websource/copy"
 }
