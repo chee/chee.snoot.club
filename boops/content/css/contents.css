@@ -1,0 +1,112 @@
+:root {
+	--red: #f25;
+	--pink: pink;
+	--blue: #69def5;
+	--yellow: #fe8;
+	--green: #22fcca;
+	--light: #fff;
+	--dark: #333;
+	--black: #000;
+	--white: #fff;
+	--off-white: #fcfcf9;
+	--off-off-white: #ececec;
+	--hover-back: rgba(250, 200, 40, 0.1);
+	--hover-front: rgb(90, 30, 20);
+	--font-stack:
+		avenir next,
+		avenir,
+		muli,
+		nunito,
+		lato,
+		comic sans ms,
+		impact,
+		papyrus,
+		sans-serif;
+}
+
+::selection {
+	background: var(--red);
+	color: var(--light);
+}
+
+html {
+	font-family: var(--font-stack);
+}
+
+body {
+	margin: 0;
+	background: var(--off-white);
+}
+
+.header {
+	top: 0;
+	left: 0;
+	right: 0;
+	font-weight: bold;
+	font-size: 0.5rem;
+	padding: 2mm;
+}
+
+.header a {
+	color: var(--black);
+	text-decoration: none;
+	display: inline-block;
+	margin: 0.2vw;
+}
+
+main {
+	background: var(--white);
+	height: 100%;
+	width: 95%;
+	margin: auto;
+	font-size: 1.5rem;
+	max-width: 80ex;
+	margin-top: 1ch;
+	border-radius: 0.5pc;
+	padding: 4pt;
+	border: 1Q solid var(--off-off-white);
+	box-shadow: 0 0 0.1in rgba(200, 200, 200, 0.2);
+	padding: 0.5cm;
+}
+
+main:hover {
+	box-shadow: 0 0 0.12in rgba(200, 200, 200, 0.3);
+}
+
+h1 {
+	font-size: 1.37em;
+	font-weight: 600;
+}
+
+h2 {
+	font-size: 1.22em;
+}
+
+h3 {
+	font-size: 1.14em;
+}
+
+h4 {
+	font-size: 1.09em;
+}
+
+h4 {
+	font-size: 1.04em;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+	margin: 0;
+	padding: 0.5rem 0;
+	padding: 0.5rem 0;
+}
+
+h1:hover,
+h2:hover,
+h3:hover,
+h4:hover,
+h5:hover,
+h6:hover,
+p:hover {
+	background: var(--hover-back);
+	color: var(--hover-front);
+}

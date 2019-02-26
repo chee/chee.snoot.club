@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en-ca">
+<meta charset="utf-8">
+<meta
+	name="viewport"
+	content="width=device-width, initial-scale=1.0">
+<link
+	rel="stylesheet"
+	href="{{ '/css/contents.css' | url }}">
+<link
+	rel="alternate"
+	href="{{ metadata.feed.path | url }}"
+	title="{{ metadata.title }}"
+	type="application/atom+xml">
+<title>
+	{{title}}
+</title>
+
+<header class="header header--blue">
+	<a href="/">
+		chee
+	</a>
+	/
+	<a href="{{ '/' | url }}">
+		content
+	</a>
+</header>
+
+<main>
+	{{content | safe}}
+</main>
