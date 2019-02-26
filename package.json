@@ -6,7 +6,8 @@
 		"start": "micro -l tcp://0.0.0.0:80",
 		"build": "boop",
 		"watch": "boop",
-		"install": "boop"
+		"install": "boop",
+		"tarball": "tar --exclude tarball.tar.gz --exclude .cache --exclude node_modules -czvf tarball.tar.gz *"
 	},
 	"author": "chee <chee@snoot.club>",
 	"license": "GPL-3.0+",
