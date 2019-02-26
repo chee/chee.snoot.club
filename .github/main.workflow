@@ -8,7 +8,7 @@ action "master only" {
   args = "branch master"
 }
 
-action "install" {
+action "install dependencies" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
   args = "install"
   needs = ["master only"]
@@ -16,14 +16,14 @@ action "install" {
 
 action "build" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
-  args = "build"
-  needs = "install"
+  args = "run build"
+  needs = ["install dependencies"]
 }
 
 action "create a tarball" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
-  needs = ["build"]
   args = "pack"
+  needs = ["build"]
 }
 
 action "send to tarballs.snoot.club" {
