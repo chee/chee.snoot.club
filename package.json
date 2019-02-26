@@ -16,6 +16,9 @@
 		"micro": "^9.3.3",
 		"serve-handler": "^5.0.7"
 	},
+	"config": {
+		"unsafe-perm": true
+	}
 	"devDependencies": {},
 	"staticPath": "websource/copy"
 }
