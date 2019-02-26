@@ -22,13 +22,13 @@ action "build" {
 
 action "create a tarball" {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
-  args = "pack"
+  args = "run tarball"
   needs = ["build"]
 }
 
 action "send to tarballs.snoot.club" {
   uses = "swinton/httpie.action@8ab0a0e926d091e0444fcacd5eb679d2e2d4ab3d"
   needs = ["create a tarball"]
-  args = "--form POST tarballs.snoot.club pathword=$tarballs_pathword ball@chee.snoot.club-0.0.0.tgz"
+  args = "--form POST tarballs.snoot.club pathword=$tarballs_pathword ball@tarball.tar.gz"
   secrets = ["tarballs_pathword"]
 }
