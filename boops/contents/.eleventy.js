@@ -19,6 +19,8 @@ md.set({
 	html: true
 })
 
+let unescapeRegex = /\\(.)/g;
+
 function getInputFile (page) {
 	return fs.readFileSync(page.inputPath, "utf-8")
 }
@@ -32,9 +34,11 @@ function getFirstLine (input) {
 
 	let match = lines[0] && lines[0].match(/^(?:#\s+)?(.*)/)
 
-	return match
-		? match[1]
-		: lines[0]
+	return (
+		match
+			? match[1]
+			: lines[0]
+	).replace(unescapeRegex, "$1")
 }
 
 let getFirstLineFromFile = page => {
