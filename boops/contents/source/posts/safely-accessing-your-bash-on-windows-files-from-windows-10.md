@@ -1,10 +1,10 @@
 ---
 date: 2017-08-13T17:10:42.830Z
 ---
-# safely accessing your bash-on-windows files from windows 10
+# safely accessing your bash\-on-windows files from windows 10
 ## *formerly: mounting your bash on windows folder over sshfs*
 
-_/this may be specific to [alwsl](https://github.com/alwsl/alwsl)/_
+/<small>this may be specific to [alwsl](https://github.com/alwsl/alwsl)</small>/
 
 editing files created through the linux subsystem from the windows side can be
 problematic; the last time i did so the file disappeared on the linux side and
