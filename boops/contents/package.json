@@ -19,7 +19,7 @@
 		"showdown-extension-polar-bear": "0.0.1"
 	},
 	"dependencies": {
-		"markdown-it-bear": "0.0.0",
+		"markdown-it-bear": "^0.1.0",
 		"markdown-it-title": "^1.0.4"
 	}
 }
