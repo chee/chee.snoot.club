@@ -38,9 +38,25 @@ main a:visited {
 	color: var(--blue);
 }
 
+@keyframes slide-background-image {
+	0% {
+		background-position: 50% 100%;
+	}
+
+	50% {
+		background-position: 0% 0%;
+	}
+
+	to {
+		background-position: 100% 50%;
+	}
+}
+
 main a:hover {
+	animation: slide-background-image alternate infinite 10s cubic-bezier(.88,.2,.07,.8);
 	color: var(--light);
-	background-image: linear-gradient(to bottom right, var(--red), var(--blue), var(--yellow));
+	background-image: repeating-linear-gradient(to right, var(--red), var(--blue), var(--yellow));
+	background-size: 400%;
 	border-radius: 1px;
 }
 
@@ -92,11 +108,6 @@ main:hover {
 	box-shadow: 0 0 0.12in rgba(200, 200, 200, 0.3);
 }
 
-h1 {
-	font-size: 1.37em;
-	font-weight: 600;
-}
-
 h2 {
 	font-size: 1.22em;
 }
@@ -113,12 +124,16 @@ h4 {
 	font-size: 1.04em;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 600;
+}
+
+h2, h3, h4, h5, h6, p {
 	margin-bottom: 0;
 	padding-bottom: 0.5ch;
 }
 
-h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
+h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
 	margin-top: 0.5ch;
 }
 
@@ -140,10 +155,18 @@ li:hover {
 
 .post-list-item {
 	display: flex;
+	align-items: center;
+}
+
+.post-list-item:hover:before {
+	opacity: 0;
 }
 
 .post-list-title {
 	flex: 1;
+	line-height: 2.4;
+	margin-left: -1em;
+	padding-left: 1em;
 }
 
 .post-time {
@@ -151,9 +174,10 @@ li:hover {
 	text-align: right;
 	opacity: 0.5;
 	color: var(--dark);
+	padding-left: 1ex;
 }
 
-.post-time:hover {
+.post-list-item:hover .post-time {
 	opacity: 1;
 	background: var(--hover-back);
 }
@@ -169,8 +193,8 @@ li:hover {
 }
 
 
-.from-bear ol,
-.from-bear ul {
+ol,
+ul {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -179,47 +203,47 @@ li:hover {
 	vertical-align: baseline
 }
 
-.from-bear ol,
-.from-bear ul {
+ol,
+ul {
 	list-style: none
 }
 
-.from-bear table {
+table {
 	border-collapse: collapse;
 	border-spacing: 0
 }
 
-.from-bear caption,
-.from-bear th,
-.from-bear td {
+caption,
+th,
+td {
 	text-align: left;
 	font-weight: normal;
 	vertical-align: middle
 }
 
-.from-bear q,
-.from-bear blockquote {
+q,
+blockquote {
 	quotes: none
 }
 
-.from-bear q:before,
-.from-bear q:after,
-.from-bear blockquote:before,
-.from-bear blockquote:after {
+q::before,
+q::after,
+blockquote::before,
+blockquote::after {
 	content: "";
 	content: none
 }
 
-.from-bear a img {
+a img {
 	border: none
 }
 
-.from-bear,
-.from-bear * {
+main,
+main * {
 	box-sizing: border-box
 }
 
-.from-bear {
+main {
 	font-size: 1.2em;
 	padding: 1.6em;
 	line-height: 1.2em;
@@ -228,25 +252,25 @@ li:hover {
 	text-rendering: optimizeLegibility;
 }
 
-.from-bear a {
+main a {
 	color: var(--blue);
 	text-decoration: none
 }
 
-.from-bear p {
+main p {
 	margin-bottom: 0;
 	hyphens: auto
 }
 
-.from-bear hr {
+hr {
 	height: 1px;
 	border: 0;
-	background-color: var(--pink);
+	background-color: var(--green);
 	margin: -1px auto 1.57143em auto
 }
 
-.from-bear ul,
-.from-bear ol {
+main ul,
+main ol {
 	margin-bottom: .31429em
 }
 
@@ -257,11 +281,7 @@ ol ol {
 	margin-bottom: 0px
 }
 
-.from-bear li {
-	padding-bottom: .2em;
-}
-
-ol li:before {
+ol li::before {
 	content: counter(ol) ".";
 	color: var(--red);
 	text-align: right;
@@ -276,8 +296,6 @@ ol li {
 
 b,
 strong {
-	font-family: "AvenirNext-Bold";
-	font-family: "avenir next";
 	font-weight: 700;
 }
 
@@ -329,7 +347,7 @@ ul li:before {
 	content: "•";
 	color: var(--red);
 	display: inline-block;
-	margin-right: 0.3em
+	margin-right: 0.3em;
 }
 
 ul ul {

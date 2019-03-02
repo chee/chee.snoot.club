@@ -9,14 +9,6 @@
 	href="{{ '/stylesheets/main.css' | url }}">
 
 <link
-	rel="stylesheet"
-	href="{{ '/stylesheets/bear.css' | url }}">
-
-<link
-	rel="stylesheet"
-	href="{{ '/stylesheets/prism.css' | url }}">
-
-<link
 	rel="alternate"
 	href="{{ 'feed.xml' | url }}"
 	title="{{ title }}"
@@ -41,7 +33,7 @@
 	{% endif %}
 </header>
 
-<main class="from-bear">
+<main>
 	{% if page.fileSlug and page.date %}
 		<time class="post-time" datetime="{{page.date}}">
 			{{ page.date | prettydate }}
