@@ -9,8 +9,12 @@ let bear = require("markdown-it-bear")
 
 bear(md)
 
+md.enable([
+	"html_inline"
+])
+
 md.set({
-	breaks: true,
+	breaks: false,
 	linkify: true,
 	html: true
 })
