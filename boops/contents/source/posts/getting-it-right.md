@@ -1,3 +1,6 @@
+---
+date: 2017-08-26T00:51:25.465Z
+---
 # getting it right the first time is the wrong goal
 
 the best software is a well-designed clone of something that grew organically.

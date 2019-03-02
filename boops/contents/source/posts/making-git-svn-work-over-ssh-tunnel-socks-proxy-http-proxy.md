@@ -1,3 +1,6 @@
+---
+date: 2012-11-25T12:58:48.618Z
+---
 # Making git-svn work over SSH tunnel, SOCKS proxy + HTTP proxy
 
 ### bad connection, worse VCS

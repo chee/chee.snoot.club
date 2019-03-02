@@ -1,3 +1,6 @@
+---
+date: 2017-02-06T15:38:47.586Z
+---
 # fosdem 2017
 
 on the flight back now from fosdem 2017. it was a good time, drinks were had, i

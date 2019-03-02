@@ -1,3 +1,6 @@
+---
+date: 2017-08-13T17:10:42.830Z
+---
 # safely accessing your bash-on-windows files from windows 10
 ## *formerly: mounting your bash on windows folder over sshfs*
 

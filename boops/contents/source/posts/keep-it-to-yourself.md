@@ -1,3 +1,6 @@
+---
+date: 2017-03-21T12:28:02.066Z
+---
 # keep it to yourself
 
 i find it hard to get things done. every couple of springs (by coincidence,

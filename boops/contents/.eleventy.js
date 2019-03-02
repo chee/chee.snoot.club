@@ -20,12 +20,17 @@ function getInputFile (page) {
 }
 
 function getFirstLine (input) {
-	let [firstline] = input.trim().split("\n")
-	let match = firstline.match(/^(?:#\s+)?(.*)/)
+	let lines = input.trim().split("\n")
+	if (lines[0] == "---") {
+		let frontmatterend = lines.slice(1).indexOf("---")
+		lines = lines.slice(2 + frontmatterend)
+	}
+
+	let match = lines[0] && lines[0].match(/^(?:#\s+)?(.*)/)
 
 	return match
 		? match[1]
-		: firstline || ""
+		: lines[0]
 }
 
 let getFirstLineFromFile = page => {

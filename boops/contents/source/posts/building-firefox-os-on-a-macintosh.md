@@ -1,3 +1,6 @@
+---
+date: 2012-12-08T13:10:03.333Z
+---
 # building firefox os on a Macintosh
 
 ## firefox OS, huh?
@@ -273,3 +276,4 @@ i’ll tell you this:
 you need to flash gaia separately on the Nexus.
 
 i love you, goodbye.
+

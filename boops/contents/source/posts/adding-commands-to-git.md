@@ -1,3 +1,6 @@
+---
+date: 2017-01-12T22:11:29.108Z
+---
 # adding commands to git
 
 did you know that you can add commands to git by naming them right and placing
