@@ -14,8 +14,8 @@ git branch | awk '/\*/ {print $2}'
 ```
 
 into a file called `git-current-branch`, make it executable and put it somewhere
-in your `$PATH` (i use `~/bin` which i have added to $PATH), you will be able to
-use it like this:
+in `$PATH` (i use `~/bin` which i've added to `$PATH`), you will be able to use
+it like this:
 
 ```bash
 $ git current-branch

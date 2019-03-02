@@ -7,7 +7,7 @@ date: 2012-12-08T13:10:03.333Z
 
 firefox OS looks cool, doesn’t it? For a while you were a bit embarrassed for
 Mozilla, seemed like they felt left out as
-nearly([?](http://www.opera.com/)) the only major browser
+nearly<sup>([?](http://www.opera.com/))</sup> the only major browser
 manufacturer who hadn’t built an operating system based on JavaScript.
 
 but now you see we live in a defiant new world where [CSS3 or 4 never
@@ -44,7 +44,7 @@ haven’t already because of some kind of illness you have.
 once you’ve installed homebrew and added its bin directory to the
 ***the front of*** ur path, be all like:
 
-```
+```bash
 curl -fsSL https://raw.github.com/mozilla-b2g/B2G/master/scripts/bootstrap-mac.sh | bash
 ```
 
@@ -55,14 +55,14 @@ couple more packages from homebrew too.
 
 I think this should cover it:
 
-```
+```bash
 brew install git coreutils findutils gnu-sed gnupg pngcrush repo
 ```
 
 
 you’ll need a few gnu utilities available under their normal names too, so:
 
-```
+```bash
 ln -s /usr/local/bin/gfind /usr/local/bin/find && ln -s /usr/local/bin/gsed /usr/local/bin/sed
 ```
 
@@ -91,7 +91,7 @@ export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
 too because then I get the GNU coreutils instead of the BSD coreutils. The BSD
 coreutils are simpler in a [cat-v](http://cat-v.org/) sort of way, but I am lazy
 and this way when mkdir is all “lol can’t make directory because directory
-doesn’t exist” i can be all <kbd>C-p</kbd>  `-p` RET and it’s all "lol ok" and
+doesn’t exist” i can be all <kbd>C-p</kbd> `-p` RET and it’s all "lol ok" and
 I’m out of there. because the gnu tools let you put the options after the
 arguments.
 
@@ -105,7 +105,6 @@ give ccache a little more room to work with, I gave it 5GB
 ccache --max-size 5GB
 ```
 
-
 now, you’re working on OS X and you’ve probably got a case-insensitive file
 system. That’s gonna cause you some nightmares when it gets to building the
 android stuff. You’re going to want to create a sparse image and do the rest
@@ -117,15 +116,12 @@ open ~/omgFirefox.dmg
 cd /Volumes/untitled
 ```
 
-
-
 next, clone the git repo and configure
 
-```
+```bash
 git clone git://github.com/mozilla-b2g/B2G.git`
 cd B2G
 ./config.sh galaxy-nexus
-
 ```
 
 that worked fine, right? good. and it only took 72 hours! HEre is where the
@@ -134,7 +130,7 @@ first naughty thing happens.
 if you try to build on Mountain Lion it will tell you “nuh-uh, you don’t got
 10.6 or 10.5 sdk”, except it’ll pronounce it like this:
 
-```
+```diff
 build/core/combo/HOST_darwin-x86.mk:42: ***********************************************************
 build/core/combo/HOST_darwin-x86.mk:43: * No 10.6 or 10.5 SDK found, do you have Xcode installed? *
 build/core/combo/HOST_darwin-x86.mk:44: ***********************************************
@@ -142,20 +138,18 @@ build/core/combo/HOST_darwin-x86.mk:44: ****************************************
 
 i did a naughty thing here. i was all:
 
-```
+```bash
 mkdir -p /Developers/SDKs
 ln -s /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk /Developer/SDKs/MacOSX10.6.sdk
-
 ```
 
 don’t tell anyone I did this.
 
 okay, ready? let’s build!
 
-```
+```bash
 ./build.sh
 ```
-
 
 please wait for the next half of your life until you reach an error that looks
 A LITTLE SOMETHING LIKE THIS:
@@ -178,7 +172,7 @@ set.
 here’s the second naughty bit. i opened up
 `external/busybox/scripts/kconfig/mconf.c` in a text editor and changed
 
-```
+```c
 #define _XOPEN_SOURCE 700
 #include <sys/ioctl.h>
 ```
@@ -186,7 +180,7 @@ here’s the second naughty bit. i opened up
 
 to
 
-```
+```c
 #define _XOPEN_SOURCE 700
 
 #define _DARWIN_C_SOURCE 1
@@ -240,10 +234,9 @@ homebrew version of status is no longer acceptable. you’ll want to take the
 homebrew stat out of the way for a moment, so you can get the mac version of
 stat. I did it like this:
 
-```
+```bash
 export PATH=/usr/bin:$PATH
 ./build.sh
-
 ```
 
 #### endif
@@ -263,8 +256,6 @@ quick recap:
 * fix external/busybox/scripts/kconfig/mconf.c
 * celebrate.
 
-
-
 i’ll tell you this:
 
 ```
@@ -272,8 +263,6 @@ i’ll tell you this:
 ./flash.sh gaia
 ```
 
-
 you need to flash gaia separately on the Nexus.
 
 i love you, goodbye.
-
