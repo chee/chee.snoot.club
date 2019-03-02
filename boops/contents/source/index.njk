@@ -12,10 +12,9 @@ title: contents
 			{{ post | firstline }}
 		</a>
 
-		<time class="post-time post-list-time" datetime="{{post.date}}">
-			{{ post.date | prettydate }}
-			<small>{{ post.date | prettytime }}</small>
-		</time>
+		{% set date = page.date %}
+		{% set extraClass = "post-list-time" %}
+		{% include "post-date.njk" %}
 	</li>
 {% endfor %}
 </ul>

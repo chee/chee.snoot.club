@@ -27,18 +27,16 @@
 	</a>
 	{% if page.fileSlug %}
 		/
-		<a class="header-link" href="{{page.url | url}}">
+		<a class="header-link active" href="{{page.url | url}}">
 			{{ title }}
 		</a>
 	{% endif %}
 </header>
 
-<main>
+<main role="main" class="main">
 	{% if page.fileSlug and page.date %}
-		<time class="post-time" datetime="{{page.date}}">
-			{{ page.date | prettydate }}
-			<small>{{ page.date | prettytime }}</small>
-		</time>
+		{% set date = page.date %}
+		{% include "post-date.njk" %}
 	{% endif %}
 	{{content | safe}}
 </main>

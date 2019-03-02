@@ -48,7 +48,10 @@ let getFirstLineFromFile = page => {
 }
 
 let makeDatePretty = (type = "") => date =>
-	date[`toLocale${type}String`]()
+	date[`toLocale${type}String`]("en-ca")
+
+let makeDateIso = date =>
+	date.toISOString()
 
 module.exports = eleventy => {
 	let addPlugins = (...plugins) => {
@@ -67,6 +70,7 @@ module.exports = eleventy => {
 	eleventy.addFilter("prettydatetime", makeDatePretty())
 	eleventy.addFilter("prettydate", makeDatePretty("Date"))
 	eleventy.addFilter("prettytime", makeDatePretty("Time"))
+	eleventy.addFilter("isodate", makeDateIso)
 	eleventy.addFilter("log", console.error)
 	eleventy.setLibrary("md", md)
 

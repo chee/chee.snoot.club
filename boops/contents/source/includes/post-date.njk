@@ -1,0 +1,5 @@
+
+<time class="post-time {% if extraClass %}{{extraClass}}{% endif %}" datetime="{{date | isodate}}">
+	{{ date | prettydate }}
+	<small>{{ date | prettytime }}</small>
+</time>
