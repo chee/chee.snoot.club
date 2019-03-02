@@ -1,7 +1,7 @@
 :root {
 	--red: #fd6976;
 	--pink: pink;
-	--blue: #69def5;
+	--blue: #59cee5;
 	--yellow: #fe8;
 	--green: #22fcca;
 	--light: #fff;
@@ -153,20 +153,19 @@ li:hover {
 	list-style-type: none;
 }
 
+.post-list li:hover {
+	background: transparent;
+}
+
 .post-list-item {
 	display: flex;
 	align-items: center;
 }
 
-.post-list-item:hover:before {
-	opacity: 0;
-}
-
 .post-list-title {
 	flex: 1;
-	line-height: 2.4;
 	margin-left: -1em;
-	padding-left: 1em;
+	padding: .5em 0 .5em 1em;
 }
 
 .post-time {
@@ -175,23 +174,17 @@ li:hover {
 	opacity: 0.5;
 	color: var(--dark);
 	padding-left: 1ex;
+	line-height: 2.4em;
 }
 
 .post-list-item:hover .post-time {
 	opacity: 1;
-	background: var(--hover-back);
+	background: var(--white);
 }
 
 .post-list-time small {
-	display: none;
+	display: block;
 }
-
-@media (min-width: 375px) {
-	.post-list-time small {
-		display: block;
-	}
-}
-
 
 ol,
 ul {
@@ -246,7 +239,7 @@ main * {
 main {
 	font-size: 1.2em;
 	padding: 1.6em;
-	line-height: 1.2em;
+	line-height: 1.2;
 	-webkit-text-size-adjust: 100%;
 	color: var(--dark);
 	text-rendering: optimizeLegibility;

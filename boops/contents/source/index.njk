@@ -9,7 +9,9 @@ title: contents
 	{% set absolutePostUrl %}{{ post.url | url | absoluteUrl(metadata.url) }}{% endset %}
 	<li class="post-list-item">
 		<a class="post-list-title" href="{{ absolutePostUrl }}">
-			{{ post | firstline }}</a>
+			{{ post | firstline }}
+		</a>
+
 		<time class="post-time post-list-time" datetime="{{post.date}}">
 			{{ post.date | prettydate }}
 			<small>{{ post.date | prettytime }}</small>
