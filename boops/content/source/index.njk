@@ -1,0 +1,19 @@
+---
+layout: post.njk
+title: contents
+---
+<h1>posts:</h1>
+
+<ul class="post-list">
+{%- for post in collections.posts | reverse %}
+	{% set absolutePostUrl %}{{ post.url | url | absoluteUrl(metadata.url) }}{% endset %}
+	<li class="post-list-item">
+		<a class="post-list-title" href="{{ absolutePostUrl }}">
+			{{ post | firstline }}</a>
+		<time class="post-time post-list-time" datetime="{{post.date}}">
+			{{ post.date | prettydate }}
+			<small>{{ post.date | prettytime }}</small>
+		</time>
+	</li>
+{% endfor %}
+</ul>

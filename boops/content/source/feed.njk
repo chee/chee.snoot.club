@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>chee's snootclub contents</title>
+	<subtitle>please be kind</subtitle>
+	<link href="{{root}}/feed.xml" rel="self"/>
+	<link href="{{root}}" />
+	<updated>{{ collections.posts | rssLastUpdatedDate }}</updated>
+	<id>https://chee.snoot.club/content</id>
+	<author>
+		<name>chee</name>
+		<email>chee-content@snoot.club</email>
+	</author>
+	{%- for post in collections.posts %}
+	{% set absolutePostUrl %}{{ post.url | url | absoluteUrl(root) }}{% endset %}
+	<entry>
+		<title>{{ post.data.title }}</title>
+		<link href="{{ absolutePostUrl }}"/>
+		<updated>{{ post.date | rssDate }}</updated>
+		<id>{{ absolutePostUrl }}</id>
+		<content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
+	</entry>
+	{%- endfor %}
+</feed>

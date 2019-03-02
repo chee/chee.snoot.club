@@ -1,18 +1,70 @@
 let inclusivity = require("@11ty/eleventy-plugin-inclusive-language")
 let highlight = require("@11ty/eleventy-plugin-syntaxhighlight")
 let rss = require("@11ty/eleventy-plugin-rss")
+let toc = require("eleventy-plugin-toc")
+let pathPrefix = require("./source/data/pathPrefix")
+let fs = require("fs")
+let md = require("markdown-it")("zero")
+let bear = require("markdown-it-bear")
+
+bear(md)
+
+md.set({
+	breaks: true,
+	linkify: true,
+	html: true
+})
+
+function getInputFile (page) {
+	return fs.readFileSync(page.inputPath, "utf-8")
+}
+
+function getFirstLine (input) {
+	let [firstline] = input.trim().split("\n")
+	let match = firstline.match(/^(?:#\s+)?(.*)/)
+
+	return match
+		? match[1]
+		: firstline || ""
+}
+
+let getFirstLineFromFile = page => {
+	let firstLine = getFirstLine(getInputFile(page))
+	page.data.title = firstLine
+	return firstLine
+}
+
+let makeDatePretty = (type = "") => date =>
+	date[`toLocale${type}String`]()
 
 module.exports = eleventy => {
-	eleventy.addPlugin(inclusivity)
-	eleventy.addPlugin(highlight)
-	eleventy.addPlugin(rss)
-	eleventy.addPassthroughCopy("css")
+	let addPlugins = (...plugins) => {
+		for (let plugin of plugins) eleventy.addPlugin(plugin)
+	}
+
+	addPlugins(
+		inclusivity,
+		highlight,
+		rss,
+		toc
+	)
+
+	eleventy.addPassthroughCopy("source/stylesheets")
+	eleventy.addFilter("firstline", getFirstLineFromFile)
+	eleventy.addFilter("prettydatetime", makeDatePretty())
+	eleventy.addFilter("prettydate", makeDatePretty("Date"))
+	eleventy.addFilter("prettytime", makeDatePretty("Time"))
+	eleventy.addFilter("log", console.error)
+	eleventy.setLibrary("md", md)
 
 	return {
 		dir: {
-			input: ".",
+			data: "data",
+			includes: "includes",
+			input: "source",
 			output: "website"
 		},
-		pathPrefix: "/content/"
+		pathPrefix,
+		jsDataFileSuffix: ".11"
 	}
 }

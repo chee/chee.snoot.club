@@ -1,5 +1,5 @@
 :root {
-	--red: #f25;
+	--red: #fd6976;
 	--pink: pink;
 	--blue: #69def5;
 	--yellow: #fe8;
@@ -10,6 +10,7 @@
 	--white: #fff;
 	--off-white: #fcfcf9;
 	--off-off-white: #ececec;
+	--faded: #99a;
 	--hover-back: rgba(250, 200, 40, 0.1);
 	--hover-front: rgb(90, 30, 20);
 	--font-stack:
@@ -27,6 +28,17 @@
 ::selection {
 	background: var(--red);
 	color: var(--light);
+}
+
+main a,
+main a:visited {
+	color: var(--blue);
+}
+
+main a:hover {
+	color: var(--light);
+	background-image: linear-gradient(to bottom right, var(--red), var(--blue), var(--yellow));
+	border-radius: 1px;
 }
 
 html {
@@ -54,12 +66,16 @@ body {
 	margin: 0.2vw;
 }
 
+.header a:hover {
+	color: var(--red);
+}
+
 main {
 	background: var(--white);
 	height: 100%;
 	width: 95%;
 	margin: auto;
-	font-size: 1.5rem;
+	font-size: 1.25rem;
 	max-width: 80ex;
 	margin-top: 1ch;
 	border-radius: 0.5pc;
@@ -106,7 +122,42 @@ h3:hover,
 h4:hover,
 h5:hover,
 h6:hover,
-p:hover {
+p:hover,
+li:hover {
 	background: var(--hover-back);
 	color: var(--hover-front);
+}
+
+.post-list {
+	list-style-type: none;
+}
+
+.post-list-item {
+	display: flex;
+}
+
+.post-list-title {
+	flex: 1;
+}
+
+.post-time {
+	font-size: 50%;
+	text-align: right;
+	opacity: 0.5;
+	color: var(--dark);
+}
+
+.post-time:hover {
+	opacity: 1;
+	background: var(--hover-back);
+}
+
+.post-list-time small {
+	display: none;
+}
+
+@media (min-width: 375px) {
+	.post-list-time small {
+		display: block;
+	}
 }

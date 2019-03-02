@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en-ca">
+<meta charset="utf-8">
+<meta
+	name="viewport"
+	content="width=device-width, initial-scale=1.0">
+<link
+	rel="stylesheet"
+	href="{{ '/stylesheets/main.css' | url }}">
+
+<link
+	rel="stylesheet"
+	href="{{ '/stylesheets/bear.css' | url }}">
+
+<link
+	rel="stylesheet"
+	href="{{ '/stylesheets/prism.css' | url }}">
+
+<link
+	rel="alternate"
+	href="{{ 'feed.xml' | url }}"
+	title="{{ title }}"
+	type="application/atom+xml">
+<title>
+	{{title}}
+</title>
+
+<header class="header">
+	<a class="header-link" href="/">
+		chee
+	</a>
+	/
+	<a class="header-link" href="{{ '/' | url }}">
+		{{ pathPrefix }}
+	</a>
+	{% if page.fileSlug %}
+		/
+		<a class="header-link" href="{{page.url | url}}">
+			{{ title }}
+		</a>
+	{% endif %}
+</header>
+
+<main class="from-bear">
+	{% if page.fileSlug and page.date %}
+		<time class="post-time" datetime="{{page.date}}">
+			{{ page.date | prettydate }}
+			<small>{{ page.date | prettytime }}</small>
+		</time>
+	{% endif %}
+	{{content | safe}}
+</main>
