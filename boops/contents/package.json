@@ -4,7 +4,7 @@
 	"description": "",
 	"scripts": {
 		"watch": "eleventy --watch",
-		"build": "eleventy"
+		"build": "rm -rf website; eleventy"
 	},
 	"author": "chee <chee@snoot.club>",
 	"license": "GPL-3.0+",
