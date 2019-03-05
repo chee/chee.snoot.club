@@ -11,8 +11,7 @@ title: contents
 		<a class="post-list-title" href="{{ absolutePostUrl }}">
 			{{ post | firstline }}
 		</a>
-
-		{% set date = page.date %}
+		{% set postDate = post.data.date %}
 		{% set extraClass = "post-list-time" %}
 		{% include "post-date.njk" %}
 	</li>

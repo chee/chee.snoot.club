@@ -35,7 +35,7 @@
 
 <main role="main" class="main">
 	{% if page.fileSlug and page.date %}
-		{% set date = page.date %}
+		{% set postDate = page.date %}
 		{% include "post-date.njk" %}
 	{% endif %}
 	{{content | safe}}

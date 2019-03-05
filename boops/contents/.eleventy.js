@@ -48,10 +48,12 @@ let getFirstLineFromFile = page => {
 }
 
 let makeDatePretty = (type = "") => date =>
-	date[`toLocale${type}String`]("en-ca")
+	new Date(date)[`toLocale${type}String`]("en-ca")
+
 
 let makeDateIso = date =>
-	date.toISOString()
+	new Date(date).toISOString()
+
 
 module.exports = eleventy => {
 	let addPlugins = (...plugins) => {
