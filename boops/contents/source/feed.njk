@@ -7,7 +7,7 @@ permalink: feed.xml
 	<subtitle>please be kind</subtitle>
 	<link href="{{root}}/feed.xml" rel="self"/>
 	<link href="{{root}}" />
-	<updated>{{ collections.posts | rssLastUpdatedDate }}</updated>
+	<updated>{{ collections.posts | rssLastUpdatedDate | utcdate }}</updated>
 	<id>https://chee.snoot.club/content</id>
 	<author>
 		<name>chee</name>
@@ -18,7 +18,7 @@ permalink: feed.xml
 	<entry>
 		<title>{{ post.data.title }}</title>
 		<link href="{{ absolutePostUrl }}"/>
-		<updated>{{ post.date | rssDate }}</updated>
+		<updated>{{ post.date | utcdate }}</updated>
 		<id>{{ absolutePostUrl }}</id>
 		<content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
 	</entry>

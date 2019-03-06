@@ -51,8 +51,18 @@ let makeDatePretty = (type = "") => date =>
 	new Date(date)[`toLocale${type}String`]("en-ca")
 
 
-let makeDateIso = date =>
-	new Date(date).toISOString()
+let makeDateString = (type = "") => {
+	if (type == "Date" || type == "Time") {
+		return makeDatePretty(type)
+	}
+
+	if (type == "UTC" || type == "ISO" || type == "") {
+		return date =>
+			new Date(date)[`to${type}String`]()
+	}
+
+	throw new Error("date string type must be one of: Date, Time, UTC, ISO, \"\"")
+}
 
 
 module.exports = eleventy => {
@@ -69,10 +79,10 @@ module.exports = eleventy => {
 
 	eleventy.addPassthroughCopy("source/stylesheets")
 	eleventy.addFilter("firstline", getFirstLineFromFile)
-	eleventy.addFilter("prettydatetime", makeDatePretty())
-	eleventy.addFilter("prettydate", makeDatePretty("Date"))
-	eleventy.addFilter("prettytime", makeDatePretty("Time"))
-	eleventy.addFilter("isodate", makeDateIso)
+	eleventy.addFilter("prettydate", makeDateString("Date"))
+	eleventy.addFilter("prettytime", makeDateString("Time"))
+	eleventy.addFilter("isodate", makeDateString("ISO"))
+	eleventy.addFilter("utcdate", makeDateString("UTC"))
 	eleventy.addFilter("log", console.error)
 	eleventy.setLibrary("md", md)
 
