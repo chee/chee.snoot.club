@@ -55,18 +55,12 @@ let makeDateString = (type = "") => {
 		return makeDatePretty(type)
 	}
 
-	if (type == "UTC" || type == "ISO" || type == "") {
+	if (type == "ISO" || type == "") {
 		return date =>
 			new Date(date)[`to${type}String`]()
 	}
 
-	if (type == "rss") {
-		return date =>
-			makeDateString("ISO")(date)
-				.replace(/\.\d+Z/, 'Z')
-	}
-
-	throw new Error("date string type must be one of: Date, Time, UTC, ISO, \"\"")
+	throw new Error("date string type must be one of: Date, Time, ISO, \"\"")
 }
 
 
@@ -87,8 +81,6 @@ module.exports = eleventy => {
 	eleventy.addFilter("prettydate", makeDateString("Date"))
 	eleventy.addFilter("prettytime", makeDateString("Time"))
 	eleventy.addFilter("isodate", makeDateString("ISO"))
-	eleventy.addFilter("utcdate", makeDateString("UTC"))
-	eleventy.addFilter("rssdate", makeDateString("rss"))
 	eleventy.addFilter("log", console.error)
 	eleventy.setLibrary("md", md)
 
