@@ -3,11 +3,11 @@ permalink: atom.xml
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-	<title>chee 🧚🏻‍♀️ rabbits 🐰🐇 s</title>
+	<title>chee 🧚🏻‍♀️ rabbits 🐰🐇</title>
 	<subtitle>please be kind</subtitle>
 	<link href="{{root}}/atom.xml" rel="self"/>
 	<link href="{{root}}" />
-	<updated>{{ collections.posts | rssLastUpdatedDate | isodate }}</updated>
+	<updated>{{ collections.posts | rssLastUpdatedDate | rssdate }}</updated>
 	<id>https://chee.snoot.club/content</id>
 	<author>
 		<name>chee</name>
@@ -18,7 +18,7 @@ permalink: atom.xml
 	<entry>
 		<title>{{ post.data.title }}</title>
 		<link href="{{ absolutePostUrl }}"/>
-		<updated>{{ post.date | isodate }}</updated>
+		<updated>{{ post.date | rssdate }}</updated>
 		<id>{{ absolutePostUrl }}</id>
 		<content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
 	</entry>

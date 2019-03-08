@@ -50,7 +50,6 @@ let getFirstLineFromFile = page => {
 let makeDatePretty = (type = "") => date =>
 	new Date(date)[`toLocale${type}String`]("en-ca")
 
-
 let makeDateString = (type = "") => {
 	if (type == "Date" || type == "Time") {
 		return makeDatePretty(type)
@@ -59,6 +58,12 @@ let makeDateString = (type = "") => {
 	if (type == "UTC" || type == "ISO" || type == "") {
 		return date =>
 			new Date(date)[`to${type}String`]()
+	}
+
+	if (type == "rss") {
+		return date =>
+			makeDateString("ISO")(date)
+				.replace(/\.\d+Z/, 'Z')
 	}
 
 	throw new Error("date string type must be one of: Date, Time, UTC, ISO, \"\"")
@@ -83,6 +88,7 @@ module.exports = eleventy => {
 	eleventy.addFilter("prettytime", makeDateString("Time"))
 	eleventy.addFilter("isodate", makeDateString("ISO"))
 	eleventy.addFilter("utcdate", makeDateString("UTC"))
+	eleventy.addFilter("rssdate", makeDateString("rss"))
 	eleventy.addFilter("log", console.error)
 	eleventy.setLibrary("md", md)
 
