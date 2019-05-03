@@ -1,26 +1,24 @@
 ---
 permalink: atom.xml
 ---
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-	<title>chee 🧚🏻‍♀️ rabbits 🐰🐇</title>
-	<subtitle>please be kind</subtitle>
-	<link href="{{root}}/atom.xml" rel="self"/>
-	<link href="{{root}}" />
-	<updated>{{ collections.posts | rssLastUpdatedDate }}</updated>
-	<id>https://chee.snoot.club/content</id>
-	<author>
-		<name>chee</name>
-		<email>chee-content@snoot.club</email>
-	</author>
-	{%- for post in collections.posts | reverse %}
-	{% set absolutePostUrl %}{{ post.url | url | absoluteUrl(root) }}{% endset %}
-	<entry>
-		<title>{{ post.data.title }}</title>
-		<link href="{{ absolutePostUrl }}"/>
-		<updated>{{ post.date | rssDate }}</updated>
-		<id>{{ absolutePostUrl }}</id>
-		<content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
-	</entry>
-	{%- endfor %}
-</feed>
+<rss version="2.0" encoding="utf-8">
+	<channel>
+		<title>chee/contents</title>
+		<description>please be kind</description>
+		<link href="{{root}}" />
+		<atom:link href="{{root}}/atom.xml" rel="self" type="application/rss+xml"/>
+		<pubDate>{{ collections.posts | rssLastUpdatedDate | toGmtString }}</pubDate>
+		<lastBuildDate>{{ collections.posts | rssLastUpdatedDate | toGmtString }}</lastBuildDate>
+		<generator>chee rabbits</generator>
+		{%- for post in collections.posts | reverse %}
+			{% set absolutePostUrl %}{{ post.url | url | absoluteUrl(root) }}{% endset %}
+			<item>
+				<title>{{ post.data.title }}</title>
+				<link href="{{ absolutePostUrl }}"/>
+				<pubDate>{{ post.date | toGmtString }}</pubDate>
+				<guid>{{ absolutePostUrl }}</guid>
+				<description>{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</description>
+			</item>
+		{%- endfor %}
+	</channel>
+</rss>
