@@ -55,7 +55,7 @@ let makeDateString = (type = "") => {
 		return makeDatePretty(type)
 	}
 
-	if (type == "ISO" || type == "") {
+	if (type == "GMT" || type == "ISO" || type == "") {
 		return date =>
 			new Date(date)[`to${type}String`]()
 	}
@@ -81,6 +81,7 @@ module.exports = eleventy => {
 	eleventy.addFilter("prettydate", makeDateString("Date"))
 	eleventy.addFilter("prettytime", makeDateString("Time"))
 	eleventy.addFilter("isodate", makeDateString("ISO"))
+	eleventy.addFilter("toGmtString", makeDateString("GMT"))
 	eleventy.addFilter("log", console.error)
 	eleventy.setLibrary("md", md)
 
