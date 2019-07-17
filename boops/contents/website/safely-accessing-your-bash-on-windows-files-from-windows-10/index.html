@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en-ca">
+<meta charset="utf-8">
+<meta
+	name="viewport"
+	content="width=device-width, initial-scale=1.0">
+<link
+	rel="stylesheet"
+	href="/contents/stylesheets/main.css">
+
+<link
+	rel="alternate"
+	href="/contents/atom.xml"
+	title="safely accessing your bash-on-windows files from windows 10"
+	type="application/atom+xml">
+<title>
+	safely accessing your bash-on-windows files from windows 10 » Chee ♥️
+</title>
+
+<header class="header">
+	<a class="header-link" href="/">
+		chee
+	</a>
+	/
+	<a class="header-link" href="/contents/">
+		contents
+	</a>
+	
+		/
+		<a class="header-link active" href="/contents/safely-accessing-your-bash-on-windows-files-from-windows-10/">
+			safely accessing your bash-on-windows files from windows 10
+		</a>
+	
+</header>
+
+<main role="main" class="main">
+	
+		
+		
+<time
+	class="post-time "
+	datetime="2017-08-13T17:10:42.830Z">
+	2017-08-13
+	<small>6:10:42 p.m.</small>
+</time>
+
+	
+	<h1>safely accessing your bash-on-windows files from windows 10</h1>
+<h2><b>formerly: mounting your bash on windows folder over sshfs</b></h2>
+<p><i><small>this may be specific to <a href="https://github.com/alwsl/alwsl">alwsl</a></small></i></p>
+<p>editing files created through the linux subsystem from the windows side can be
+problematic; the last time i did so the file disappeared on the linux side and
+was inaccessible even after a reboot. very microsoft.</p>
+<p>apart from this, they've done a quite un–microsoft job of making it good. and as
+i live mostly in the terminal anyhoot, i haven't been in much more pain than my
+base pain rate (bpr) during this, probably brief, dalliance with microsoft's
+windows 10 operating system for x86-compatible personal computers</p>
+<p>to get around this issue i've decided to try mounting the user directory over
+ssh. perhaps there are better ideas, but this was mine.</p>
+<p>there aren't many steps to it but it took a little research, so here's what i
+needed to do:</p>
+<h2>1. install dokany 0.7.4</h2>
+<p>get it here:
+<a href="https://github.com/dokan-dev/dokany/releases/tag/v0.7.4">dokany#v0.7.4</a></p>
+<p>the current version of WinSSHFS does not support anything higher than 0.7.4, as
+0.8.0 and above broke the API. if you are reading this in the future (which you
+are, because that's how time works), a newer version may well be preferable.</p>
+<h2>2. download WinSSHFS</h2>
+<p>get it here: <a href="https://github.com/Foreveryone-cz/win-sshfs/releases/tag/1.5.12.8">win-sshfs#1.5.12.8</a></p>
+<h2>3. set up sshd on the linux side</h2>
+<p>do this with the package manager for whatever distro you've installed into the
+subsystem.</p>
+<p>for arch the instructions are as follows:</p>
+<pre><code># pacman -S openssh
+# $EDITOR /etc/ssh/sshd_config
+</code></pre>
+<p>to <code>sshd_config</code> add:</p>
+<pre><code>KexAlgorithms diffie-hellman-group14-sha1
+</code></pre>
+<p>ensure <code>UsePAM</code> is set to yes. i also added <code>AllowUsers chee</code>. if you want to
+use a port other than 22, set <code>Port</code> to whatever that port is.</p>
+<pre><code># sshd
+</code></pre>
+<h2>4. configure WinSSHFS</h2>
+<ul>
+<li>run the WinSSHFS exe, it will open up a cute wee panel.</li>
+<li>click <code>+ Add</code> at the bottom.</li>
+<li>set the Drive Name to something, i used &quot;bash on windows&quot; because i did a
+creative writing class when i was in high school</li>
+<li>set <code>Host</code> to <code>localhost</code></li>
+<li>set <code>Port</code> to 22 or whatever custom port you chose</li>
+<li>set <code>Username</code> to your username</li>
+<li>enter your password, or select <code>PrivateKey</code> and locate your <code>id_rsa</code> and type the password in for that</li>
+<li>set <code>Directory</code> to <code>.</code> to mount your homedir, or to whatever dir you like</li>
+<li>choose a drive letter or a mount folder and choose if you want to mount at login or not. i did</li>
+<li>leave <code>the proxy section</code> alone, leave <code>Proxy Type</code> as <code>None</code></li>
+<li>hit Save</li>
+<li>hit Mount</li>
+<li>bask in the glory of your mounted drive in <code>This PC</code></li>
+<li>freely edit lxss-created files on windows as the lord God intended</li>
+</ul>
+<h2>5. rejoice in the splendor of the day, it may well be your last</h2>
+
+</main>
