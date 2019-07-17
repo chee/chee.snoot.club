@@ -13,7 +13,7 @@
 	"license": "GPL-3.0+",
 	"description": "",
 	"dependencies": {
-		"@snootclub/boop": "0.0.4",
+		"@snootclub/boop": "0.0.9",
 		"micro": "^9.3.3",
 		"serve-handler": "^5.0.7"
 	},
