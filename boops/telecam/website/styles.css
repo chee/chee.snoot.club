@@ -1,0 +1,67 @@
+:root {
+	background: #fefefe;
+	font-family: avenir next, sans-sans-serif;
+}
+
+channel > title {
+	display: block;
+	font-size: 2em;
+	font-weight: bold;
+}
+
+channel > description {
+	font-size: 1.2em;
+	font-style: italic;
+	color: #333;
+}
+
+channel > pubDate {
+	display: none;
+}
+
+channel > lastBuildDate {
+	display: none;
+}
+
+channel > generator {
+	display: none;
+}
+
+item {
+	display: block;
+	margin: auto;
+	padding: 1em;
+	max-width: 80rem;
+	text-align: center;
+}
+
+item > title {
+	display: block;
+	font-size: 2em;
+}
+
+item > pubDate {
+	display: block;
+	text-transform: lowercase;
+	font-size: 0.8em;
+}
+
+item > guid {
+	display: none;
+}
+
+item > description {
+	display: block;
+	background: #333;
+	color: #3c3;
+	font-family: fira code, monospace;
+	padding: 2em;
+	margin: 1em 0;
+
+	/* actualy */
+	display: none;
+}
+
+item > xhtml\:img {
+	display: block;
+}

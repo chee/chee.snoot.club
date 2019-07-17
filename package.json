@@ -20,6 +20,8 @@
 	"config": {
 		"unsafe-perm": true
 	},
-	"devDependencies": {},
+	"devDependencies": {
+		"micro-dev": "^3.0.0"
+	},
 	"staticPath": "websource/copy"
 }
