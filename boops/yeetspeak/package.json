@@ -1,0 +1,16 @@
+{
+  "name": "yeetspeak",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "chee <chee@snoot.club>",
+  "license": "GPL-3.0+",
+  "dependencies": {
+    "espeak": "0.0.3",
+    "micro-query": "^0.3.0"
+  }
+}
