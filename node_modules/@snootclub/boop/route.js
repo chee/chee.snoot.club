@@ -1,6 +1,5 @@
 let checkFileExists = require("./library/check-file-existence.js")
 let path = require("path")
-let augment = require("./library/augment.js")
 let symbols = require("./symbols.js")
 let boopRoot = "boops"
 
@@ -10,10 +9,10 @@ let getName = request =>
 let getNextUrl = request =>
 	request.url.slice(getName(request).length + 1) || '/'
 
-let getNextRequest = request =>
-	augment(request, {
-		url: getNextUrl(request)
-	})
+let getNextRequest = request => {
+	request.url = getNextUrl(request)
+	return request
+}
 
 module.exports = async (request, response) => {
 	let boopName = getName(request)
