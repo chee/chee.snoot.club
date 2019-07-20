@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "serve-handler": "^6.1.0"
+    "cheerio": "^1.0.0-rc.3",
+    "serve-handler": "^6.1.0",
+    "urlencoded-body-parser": "^3.0.0"
   },
   "devDependencies": {},
   "scripts": {
