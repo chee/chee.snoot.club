@@ -33,19 +33,18 @@ module.exports = (request, response) => (async (request, response) => {
 			boy.on(
 				"file",
 				(field, stream, _originalFilename, _encoding, _mimetype) => {
-					if (field !== "photo") {
-						fail("yeet wrong photo field")
-					}
+					console.log({field, _mimetype})
 					let out = createWriteStream(photoFile)
+					promises.push
 					stream.pipe(out)
 				}
 			)
-			boy.on("field", (key, value) => {
-				form[key] = value.toString()
-			})
-			boy.on("finish", () => {
-				succeed(form)
-			})
+			// boy.on("field", (key, value) => {
+			// 	form[key] = value.toString()
+			// })
+			// boy.on("finish", () => {
+			// 	succeed(form)
+			// })
 			request.pipe(boy)
 		})
 
