@@ -3,7 +3,7 @@ let {promises: fs, createWriteStream} = require("fs")
 let resolvePath = require("path").resolve
 let feedFile = resolvePath(__dirname, "website/index.xml")
 let secretFile = resolvePath(__dirname, "secret")
-let photoDirectory = resolvePath(__dirname, "photos")
+let photoDirectory = resolvePath(__dirname, "website/photos")
 let {send} = require("micro")
 let Busboy = require("busboy")
 
@@ -22,6 +22,7 @@ let createId = () =>
 
 module.exports = (request, response) => (async (request, response) => {
 	if (request.url === "/post" && request.method == "POST") {
+		console.log(request.headers)
 		let guid = createId()
 		let photoFile = resolvePath(photoDirectory, `${guid}.jpg`)
 
@@ -35,16 +36,15 @@ module.exports = (request, response) => (async (request, response) => {
 				(field, stream, _originalFilename, _encoding, _mimetype) => {
 					console.log({field, _mimetype})
 					let out = createWriteStream(photoFile)
-					promises.push
 					stream.pipe(out)
 				}
 			)
-			// boy.on("field", (key, value) => {
-			// 	form[key] = value.toString()
-			// })
-			// boy.on("finish", () => {
-			// 	succeed(form)
-			// })
+			boy.on("field", (key, value) => {
+				form[key] = value.toString()
+			})
+			boy.on("finish", () => {
+				succeed(form)
+			})
 			request.pipe(boy)
 		})
 
