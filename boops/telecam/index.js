@@ -51,7 +51,6 @@ module.exports = (request, response) => (async (request, response) => {
 
 		let secret = await fs.readFile(secretFile, "utf-8").catch(() => NaN)
 
-		console.log({form, secret})
 		if (form.secret !== secret) {
 			return send(response, 444, "yeet")
 		}
@@ -76,6 +75,8 @@ module.exports = (request, response) => (async (request, response) => {
 			</description>
 			<xhtml:img
 				xmlns:xhtml="http://www.w3.org/1999/xhtml"
+				width="500"
+				height="500"
 				src="https://chee.snoot.club/telecam/photos/${guid}.jpg"
 			/>
 		</item>`
