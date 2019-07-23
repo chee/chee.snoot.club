@@ -219,8 +219,6 @@
 			data.append("photo", blob, "image.jpg")
 			data.append("title", titleInput.value)
 			data.append("secret", secretInput.value)
-			window.formy = data
-			conaol
 			fetch("post", {
 				method: "POST",
 				body: data
