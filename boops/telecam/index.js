@@ -22,7 +22,6 @@ let createId = () =>
 
 module.exports = (request, response) => (async (request, response) => {
 	if (request.url === "/post" && request.method == "POST") {
-		console.log(request.headers)
 		let guid = createId()
 		let photoFile = resolvePath(photoDirectory, `${guid}.jpg`)
 
@@ -34,7 +33,6 @@ module.exports = (request, response) => (async (request, response) => {
 			boy.on(
 				"file",
 				(field, stream, _originalFilename, _encoding, _mimetype) => {
-					console.log({field, _mimetype})
 					let out = createWriteStream(photoFile)
 					stream.pipe(out)
 				}

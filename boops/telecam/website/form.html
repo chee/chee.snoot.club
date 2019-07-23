@@ -1,7 +1,230 @@
 <!doctype html>
-<form method="POST" action="post" enctype="multipart/form-data">
-	<input type=file name=photo>
-	<textarea name=secret></textarea>
-	<input type=text name=title>
-	<input type=submit>
+<style>
+	:root {
+		height: 100%;
+		margin: 0;
+	}
+	body {
+		background: #fefefe;
+		font-family: avenir next, sans-sans-serif;
+		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 99%;
+		margin: 0;
+	}
+	input {
+		text-align: center;
+	}
+	form {
+		display: flex;
+		flex-direction: column;
+		max-width: 600px;
+		margin: auto;
+	}
+	.little-wrap {
+		margin-top: 1em;
+		position: relative;
+	}
+	.little-wrap .little-label {
+		position: absolute;
+		text-transform: uppercase;
+		font-size: 0.75em;
+		color: #ccc;
+		z-index: 0;
+		top: -1.1em;
+		left: 0;
+	}
+	.little-wrap input {
+		border: none;
+		font-size: 2em;
+		margin-bottom: 1em;
+		width: 100%;
+		display: block;
+	}
+	.little-wrap input:focus {
+		border-bottom: 1px solid #ccc;
+	}
+	[type="submit"] {
+		border: 1px solid darkgreen;
+		background: lightseagreen;
+		box-shadow: 2px 2px 2px rgba(0, 50, 0, 0.5);
+		padding: 1em 2em;
+		color: white;
+		font-weight: bold;
+		margin-top: 1em;
+		margin-bottom: 1em;
+	}
+	[type="submit"]:active {
+		box-shadow: inset 2px 2px 2px rgba(0, 50, 0, 0.5);;
+	}
+	.file {
+		width: 500px;
+		height: 500px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid #ccc;
+		margin: 1em;
+		position: relative;
+	}
+	.file input {
+		display: none;
+	}
+	.file-label {
+		position: absolute;
+	}
+</style>
+<form
+	method="POST"
+	action="post"
+	enctype="multipart/form-data">
+	<label class="little-wrap title">
+		<span class="little-label">
+			Name
+		</span>
+		<input type="text" name="title" autofocus id="titleInput"/>
+	</label>
+	<label class="file">
+		<span class="file-label" id="image_label">
+			Choose image...
+		</span>
+		<input
+			class="image"
+			type="file"
+			id="file"
+			name="photo"
+		/>
+		<canvas
+			width="500"
+			height="500"
+			id="canvas">
+		</canvas>
+	</label>
+	<label class="little-wrap secret">
+		<span class="little-label">
+			Secret
+		</span>
+		<input name="secret" id="secretInput"></input>
+	</label>
+	<input
+		id="yeet"
+		value="Yeet"
+		type="submit"
+	/>
 </form>
+<script>
+	let numbers = {
+		x({same, wide, long, difference}) {
+			if (same) return 0
+			if (wide) return difference / 2
+			if (long) return 0
+			throw new Error("ratio must be one of: same, wide, long")
+		},
+		y({same, wide, long, difference}) {
+			if (same) return 0
+			if (wide) return 0
+			if (long) return difference / 2
+			throw new Error("ratio must be one of: same, wide, long")
+		},
+		h({same, wide, long, difference, width, height}) {
+			if (same) return height
+			if (wide) return height
+			if (long) return height - difference
+			throw new Error("ratio must be one of: same, wide, long")
+		},
+		w({same, wide, long, difference, width, height}) {
+			if (same) return width
+			if (wide) return width - difference
+			if (long) return width
+			throw new Error("ratio must be one of: same, wide, long")
+		}
+	}
+	let toast = context => {
+		context.globalCompositeOperation = "screen"
+
+		let gradient = context.createRadialGradient(
+			250, 250, 0,
+			250, 250, 150
+		)
+
+		gradient.addColorStop(0, "#804e0f")
+		gradient.addColorStop(1, "#3b003b")
+
+		context.fillStyle = gradient
+		context.fillRect(0, 0, 500, 500)
+
+		context.globalCompositeOperation = "copy"
+	}
+
+	let reader = new FileReader
+	reader.addEventListener("load", event => {
+		image_label.style.display = "none"
+		let canvas = document.getElementsByTagName("canvas")[0]
+		let context = canvas.getContext("2d")
+		context.globalCompositeOperation = "copy"
+		let imageElement = document.createElement("img")
+		imageElement.src = event.target.result
+		imageElement.addEventListener("load", () => {
+			let width = imageElement.naturalWidth
+			let height = imageElement.naturalHeight
+
+			let wide = width > height
+			let long = width < height
+			let same = width == height
+
+			let difference = Math.abs(width - height)
+			let arguments = {width, height, wide, long, same, difference}
+
+			context.drawImage(
+				imageElement,
+				numbers.x(arguments), numbers.y(arguments),
+				numbers.w(arguments), numbers.h(arguments),
+				0, 0,
+				500, 500
+			)
+		})
+		let toaster = document.createElement("button")
+		toaster.textContent = "🍞🔥"
+		toaster.style.position = "absolute"
+		toaster.style.bottom = 0
+		document.body.appendChild(toaster)
+		toaster.onclick = () => {
+			toast(context)
+			toaster.remove()
+		}
+	})
+	let readFile = () => reader.readAsDataURL(file.files[0])
+	file.addEventListener("change", readFile)
+	file.files[0] && readFile()
+</script>
+<script>
+	document.body.addEventListener("dragover", event => {
+		event.preventDefault()
+	})
+	document.body.addEventListener("drop", event => {
+		event.preventDefault()
+		file.files = event.dataTransfer.files
+		readFile()
+	})
+</script>
+<script>
+	yeet.onclick = event => {
+		event.preventDefault()
+		let canvas = document.getElementsByTagName("canvas")[0]
+		let context = canvas.getContext("2d")
+		canvas.toBlob(blob => {
+			let data = new FormData()
+			data.append("photo", blob, "image.jpg")
+			data.append("title", titleInput.value)
+			data.append("secret", secretInput.value)
+			window.formy = data
+			conaol
+			fetch("post", {
+				method: "POST",
+				body: data
+			})
+		}, "image/jpeg", 1)
+	}
+</script>
