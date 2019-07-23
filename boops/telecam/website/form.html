@@ -135,22 +135,25 @@
 	/>
 </form>
 <section class="filters">
-	<button id="toaster" onclick="toast()">
+	<button onclick="trans()">
+		🏳️‍⚧️
+	</button>
+	<button onclick="toast()">
 		🍞🔥
 	</button>
-	<button id="roaster" onclick="roast()">
+	<button onclick="roast()">
 		🌞☀️
 	</button>
-	<button id="froster" onclick="frost()">
+	<button onclick="frost()">
 		🐧☃
 	</button>
-	<button id="bandw" onclick="bandw()">
+	<button onclick="bandw()">
 		⬛️⬜️
 	</button>
-	<button id="shuffle" onclick="frame()">
+	<button onclick="frame()">
 		🖼𐃎
 	</button>
-	<button id="dimmen" onclick="dimmen()">
+	<button onclick="dimmen()">
 		☹⤵
 	</button>
 </section>
@@ -200,6 +203,40 @@
 
 		context.fillStyle = gradient
 		context.fillRect(0, 0, size, size)
+
+		context.globalCompositeOperation = "copy"
+	}
+
+	function trans () {
+		["overlay"].forEach(meat => {
+			context.globalCompositeOperation = meat
+			let gradient = context.createLinearGradient(
+				250, 0, 250, 500
+			)
+
+			let blue = "#55cdfc"
+			let pink = "#f7a8b8"
+			let white = "#cccccc"
+
+			let colors = [blue, pink, white, white, pink, blue]
+
+			colors.forEach((color, index) => {
+				let [last, next] = [colors[index - 1], colors[index + 1]]
+				let step = index / colors.length
+				if (last) {
+					gradient.addColorStop(step - 0.001, last)
+				}
+				if (last || next) {
+					gradient.addColorStop(step, color)
+				}
+				if (next) {
+					gradient.addColorStop(step + 0.001, color)
+				}
+			})
+
+			context.fillStyle = gradient
+			context.fillRect(0, 0, 500, 500)
+		})
 
 		context.globalCompositeOperation = "copy"
 	}
