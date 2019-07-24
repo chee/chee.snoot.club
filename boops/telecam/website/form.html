@@ -20,6 +20,11 @@
 		justify-content: center;
 		height: 98%;
 		margin: 0;
+		margin-top: 1em;
+	}
+	.drag-her {
+		box-sizing: border-box;
+		border: 10px red dashed;
 	}
 	input {
 		text-align: center;
@@ -27,8 +32,7 @@
 	form {
 		display: flex;
 		flex-direction: column;
-		max-width: 600px;
-		margin: auto;
+		max-width: 500px;
 	}
 	.little-wrap {
 		margin-top: 1em;
@@ -62,6 +66,7 @@
 		font-weight: bold;
 		margin-top: 1em;
 		margin-bottom: 1em;
+		font-size: 1.2em;
 	}
 	[type="submit"]:active {
 		box-shadow: inset 2px 2px 2px rgba(0, 50, 0, 0.5);;
@@ -73,7 +78,6 @@
 		align-items: center;
 		justify-content: center;
 		border: 1px solid #ccc;
-		margin: 1em;
 		position: relative;
 	}
 	.file input {
@@ -83,8 +87,9 @@
 		position: absolute;
 	}
 	.filters {
-		height: 3em;
-		display: flex;
+		display: grid;
+		grid-template-columns: repeat(8, auto);
+		border: 1px solid #ccc;
 	}
 	.filters button {
 		font-size: 1em;
@@ -92,14 +97,72 @@
 		width: 4em;
 		background: white;
 		margin: 0;
-		border: 1px solid #ccc;
+		border: none;
 		cursor: pointer;
+		position: relative;
 	}
 	.filters button:hover {
 		background: #eee;
 	}
 	.filters button + button {
-		border-left: none;
+		border-left: 1px solid #eee;
+	}
+	.filters button:nth-child(1):hover {
+		background: linear-gradient(to bottom left, red, orange);
+	}
+	.filters button:nth-child(2):hover {
+		background: linear-gradient(to bottom left, orange, yellow);
+	}
+	.filters button:nth-child(3):hover {
+		background: linear-gradient(to bottom left, yellow, lightgreen);
+	}
+	.filters button:nth-child(4):hover {
+		background: linear-gradient(to bottom left, lightseagreen, skyblue);
+	}
+	.filters button:nth-child(5):hover {
+		background: linear-gradient(to bottom left, aliceblue, indigo);
+	}
+	.filters button:nth-child(6):hover {
+		background: linear-gradient(to bottom left, indigo, violet);
+	}
+	.filters button:nth-child(7):hover {
+		background: linear-gradient(to bottom left, violet, #ff2a50);
+	}
+	@media (max-width: 555px) {
+		:root {
+			transform: scale(0.9);
+		}
+		.filters {
+			grid-template-columns: repeat(6, auto);
+		}
+	}
+	@media (max-width: 500px) {
+		:root {
+			transform: scale(0.8);
+			font-size: 1.2em;
+		}
+		.filters {
+			grid-template-columns: repeat(5, auto);
+		}
+	}
+	@media (max-width: 475px) {
+		:root {
+			transform: scale(0.7);
+			font-size: 1.4em;
+		}
+		.filters {
+			grid-template-columns: repeat(4, auto);
+		}
+	}
+	@media (max-width: 360px) {
+		:root {
+			transform: scale(0.6);
+		}
+	}
+	@media (max-width: 300px) {
+		:root {
+			transform: scale(0.5);
+		}
 	}
 </style>
 <form
@@ -382,9 +445,11 @@
 </script>
 <script>
 	document.body.addEventListener("dragover", event => {
+		document.documentElement.classList.add("drag-her")
 		event.preventDefault()
 	})
 	document.body.addEventListener("drop", event => {
+		document.documentElement.classList.remove("drag-her")
 		event.preventDefault()
 		file.files = event.dataTransfer.files
 		readFile()
