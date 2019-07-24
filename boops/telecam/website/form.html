@@ -10,6 +10,28 @@
 		margin: 0;
 		transform-origin: 50% 0;
 	}
+	:root.yay {
+		transform: initial!important;
+	}
+	main.yay,
+	main.no {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		font-size: 6em;
+	}
+	main.yay {
+		background: lightseagreen;
+	}
+	main.no {
+		background: lightcoral;
+	}
 	canvas {
 		height: 500px;
 		width: 500px;
@@ -170,7 +192,7 @@
 		}
 	}
 </style>
-<main>
+<main id="main">
 <form
 	method="POST"
 	action="post"
@@ -472,10 +494,25 @@
 			data.append("photo", blob, "image.jpg")
 			data.append("title", titleInput.value)
 			data.append("secret", secretInput.value)
+			let destroy = (good = true) => {
+				main.remove()
+				let next = document.createElement("main")
+				next.classList.add(good?"yay":"no")
+				document.documentElement.classList.add("yay")
+				let tick = document.createElement("i")
+				tick.textContent = (good?"✓":"✗")
+				next.append(tick)
+				document.body.append(next)
+			}
 			fetch("post", {
 				method: "POST",
 				body: data
+			}).then(() => {
+				destroy("good")
+			}).catch(() => {
+				destroy(false)
 			})
+
 		}, "image/jpeg", 1)
 	}
 </script>
