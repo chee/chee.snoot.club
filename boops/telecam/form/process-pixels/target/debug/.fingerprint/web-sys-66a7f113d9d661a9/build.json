@@ -1,0 +1,1 @@
+{"rustc":14482131511702393637,"features":"","target":0,"profile":0,"path":0,"deps":[["web-sys v0.3.25","build_script_build",15778634272245360]],"local":[{"MtimeBased":[[1563986012,257173000],"build/web-sys-66a7f113d9d661a9/output"]},{"EnvBased":["__WASM_BINDGEN_DUMP_FEATURES",null]},{"EnvBased":["WEBIDL_RUSTFMT_BINDINGS",null]}],"rustflags":[],"metadata":0}

@@ -1,0 +1,12 @@
+/Users/chee/Projects/chee.snoot.club/boops/telecam/form/process-pixels/target/release/deps/libbumpalo-3e1c2bf247e999c4.rlib: /Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/lib.rs /Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/collections/mod.rs /Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/collections/raw_vec.rs /Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/collections/vec.rs /Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/collections/str/mod.rs /Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/collections/str/lossy.rs /Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/collections/string.rs /Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/alloc.rs
+
+/Users/chee/Projects/chee.snoot.club/boops/telecam/form/process-pixels/target/release/deps/bumpalo-3e1c2bf247e999c4.d: /Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/lib.rs /Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/collections/mod.rs /Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/collections/raw_vec.rs /Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/collections/vec.rs /Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/collections/str/mod.rs /Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/collections/str/lossy.rs /Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/collections/string.rs /Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/alloc.rs
+
+/Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/lib.rs:
+/Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/collections/mod.rs:
+/Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/collections/raw_vec.rs:
+/Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/collections/vec.rs:
+/Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/collections/str/mod.rs:
+/Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/collections/str/lossy.rs:
+/Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/collections/string.rs:
+/Users/chee/.cargo/registry/src/github.com-1ecc6299db9ec823/bumpalo-2.5.0/src/alloc.rs:

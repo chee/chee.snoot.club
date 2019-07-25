@@ -1,0 +1,15 @@
+{
+  "name": "process-pixels",
+  "collaborators": [
+    "chee <chee@snoot.club>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "process_pixels_bg.wasm",
+    "process_pixels.js",
+    "process_pixels.d.ts"
+  ],
+  "module": "process_pixels.js",
+  "types": "process_pixels.d.ts",
+  "sideEffects": "false"
+}

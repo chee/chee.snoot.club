@@ -1,0 +1,264 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Can't you be cool, like me?</title>
+<meta
+	name="viewport"
+	content=width=device-width,initial-scale=1
+/>
+<style>
+	:root {
+		margin: 0;
+		transform-origin: 50% 0;
+	}
+	:root.yay {
+		transform: initial!important;
+	}
+	main.yay,
+	main.no {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		font-size: 6em;
+	}
+	main.yay {
+		background: lightseagreen;
+	}
+	main.no {
+		background: lightcoral;
+	}
+	canvas {
+		height: 500px;
+		width: 500px;
+	}
+	body {
+		background: #fefefe;
+		font-family: avenir next, sans-sans-serif;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		margin: 0;
+	}
+	.drag-her {
+		box-sizing: border-box;
+		border: 10px red dashed;
+	}
+	input {
+		text-align: center;
+		max-width: 500px;
+	}
+	form {
+		display: grid;
+		flex-direction: column;
+		max-width: 500px;
+		grid-template-rows: 1fr 500px 1fr 1fr;
+	}
+	.little-wrap {
+		margin-top: 1em;
+		position: relative;
+	}
+	.little-wrap .little-label {
+		position: absolute;
+		text-transform: uppercase;
+		font-size: 0.75em;
+		color: #ccc;
+		z-index: 0;
+		top: 0;
+		left: 0;
+	}
+	.little-wrap input {
+		border: none;
+		font-size: 2em;
+		margin: auto;
+		width: 450px;
+		margin-bottom: 0.5em;
+		display: block;
+	}
+	.little-wrap input:focus {
+		border-bottom: 1px solid #ccc;
+	}
+	[type="submit"] {
+		border: 1px solid darkgreen;
+		background: lightseagreen;
+		box-shadow: 2px 2px 2px rgba(0, 50, 0, 0.5);
+		padding: 1em 2em;
+		color: white;
+		font-weight: bold;
+		margin-top: 1em;
+		margin-bottom: 1em;
+		font-size: 1.2em;
+	}
+	[type="submit"]:active {
+		box-shadow: inset 2px 2px 2px rgba(0, 50, 0, 0.5);;
+	}
+	.file {
+		width: 500px;
+		height: 500px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid #ccc;
+		position: relative;
+	}
+	.file input {
+		display: none;
+	}
+	.file-label {
+		position: absolute;
+	}
+	.filters {
+		display: grid;
+		grid-template-columns: repeat(8, auto);
+		border: 1px solid #ccc;
+	}
+	.filters button {
+		font-size: 1em;
+		height: 4em;
+		width: 100%;
+		background: white;
+		margin: 0;
+		border: none;
+		cursor: pointer;
+		position: relative;
+	}
+	.filters button:hover {
+		background: #eee;
+	}
+	.filters button + button {
+		border-left: 1px solid #eee;
+	}
+	.filters button:nth-child(1):hover {
+		background: linear-gradient(to bottom left, red, orange);
+	}
+	.filters button:nth-child(2):hover {
+		background: linear-gradient(to bottom left, orange, yellow);
+	}
+	.filters button:nth-child(3):hover {
+		background: linear-gradient(to bottom left, yellow, lightgreen);
+	}
+	.filters button:nth-child(4):hover {
+		background: linear-gradient(to bottom left, lightseagreen, skyblue);
+	}
+	.filters button:nth-child(5):hover {
+		background: linear-gradient(to bottom left, aliceblue, indigo);
+	}
+	.filters button:nth-child(6):hover {
+		background: linear-gradient(to bottom left, indigo, violet);
+	}
+	.filters button:nth-child(7):hover {
+		background: linear-gradient(to bottom left, violet, #ff2a50);
+	}
+	@media (max-width: 555px) {
+		:root {
+			transform: scale(0.9);
+		}
+		.filters {
+			grid-template-columns: repeat(6, auto);
+		}
+	}
+	@media (max-width: 500px) {
+		:root {
+			transform: scale(0.8);
+			font-size: 1.2em;
+		}
+		.filters {
+			grid-template-columns: repeat(5, auto);
+		}
+	}
+	@media (max-width: 475px) {
+		:root {
+			transform: scale(0.65);
+			font-size: 1.4em;
+		}
+		.filters {
+			grid-template-columns: repeat(4, auto);
+		}
+	}
+	@media (max-width: 360px) {
+		:root {
+			transform: scale(0.6);
+		}
+	}
+	@media (max-width: 300px) {
+		:root {
+			transform: scale(0.5);
+		}
+	}
+</style>
+<main id="main">
+<form
+	method="POST"
+	action="post"
+	enctype="multipart/form-data">
+	<label class="little-wrap title">
+		<span class="little-label">
+			Name
+		</span>
+		<input type="text" name="title" autofocus id="titleInput"/>
+	</label>
+	<label class="file">
+		<span class="file-label" id="image_label">
+			Choose image...
+		</span>
+		<input
+			class="image"
+			type="file"
+			id="file"
+			name="photo"
+		/>
+		<canvas
+			width="500"
+			height="500"
+			id="canvas">
+		</canvas>
+	</label>
+	<label class="little-wrap secret">
+		<span class="little-label">
+			Secret
+		</span>
+		<input name="secret" id="secretInput"></input>
+	</label>
+	<input
+		id="yeet"
+		value="Yeet"
+		type="submit"
+	/>
+</form>
+<section class="filters">
+	<button id="trans">
+		🏳️‍⚧️<br>trans
+	</button>
+	<button id="toast">
+		🍞🔥<br>toast
+	</button>
+	<button id="roast">
+		🌞☀️<br>roast
+	</button>
+	<button id="frost">
+		🐧☃<br>frost
+	</button>
+	<button id="bandw">
+		⬛️⬜️<br>b & w
+	</button>
+	<button id="frame">
+		🖼𐃎<br>frame
+	</button>
+	<button id="dimmen">
+		☹⤵<br>dimmen
+	</button>
+	<button id="undo">
+		⎌🔙<br>undo
+	</button>
+	<button id="redo">
+		⏭👌<br>redo
+	</button>
+</section>
+</main>
+<script src="yeet.js"></script>
