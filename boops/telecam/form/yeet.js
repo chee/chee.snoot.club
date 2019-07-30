@@ -49,8 +49,8 @@ let load = () => {
 		Middle.h(measurements),
 		0,
 		0,
-		500,
-		500
+		1000,
+		1000
 	)
 }
 

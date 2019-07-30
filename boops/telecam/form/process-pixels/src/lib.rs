@@ -8,6 +8,10 @@ extern crate js_sys;
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
 
+const F_IMAGE_SIZE: f64 = 500.0;
+const U_IMAGE_SIZE: usize = F_IMAGE_SIZE as usize;
+const U32_IMAGE_SIZE: u32 = F_IMAGE_SIZE as u32;
+
 cfg_if! {
     // When the `console_error_panic_hook` feature is enabled, we can call the
     // `set_panic_hook` function to get better error messages if we ever panic.
@@ -93,14 +97,14 @@ impl Point {
 		Point{row, column}
 	}
 
-	fn to_pixel_index(&self, size: usize) -> usize {
-		((self.row * (size * 4)) + (self.column * 4))
+	fn to_pixel_index(&self) -> usize {
+		((self.row * (U_IMAGE_SIZE * 4)) + (self.column * 4))
 	}
 
-	fn from_pixel_index(index: usize, size: usize) -> Point {
+	fn from_pixel_index(index: usize) -> Point {
 		Point::new(
-			index / (size),
-			index % (size)
+			index / (U_IMAGE_SIZE),
+			index % (U_IMAGE_SIZE)
 		)
 	}
 }
@@ -121,9 +125,11 @@ fn get_context () -> web_sys::CanvasRenderingContext2d {
         .expect("couldn't dyn into context")
 }
 
-fn get_image_data (context: &web_sys::CanvasRenderingContext2d) -> [u8; 1000000] {
+type PixelArray = [u8; U_IMAGE_SIZE * U_IMAGE_SIZE * 4];
+
+fn get_image_data (context: &web_sys::CanvasRenderingContext2d) -> PixelArray {
 	let mut data = context
-		.get_image_data(0.0, 0.0, 500.0, 500.0)
+		.get_image_data(0.0, 0.0, F_IMAGE_SIZE, F_IMAGE_SIZE)
 		.expect("couldnt get image data")
 		.data();
 
@@ -133,11 +139,11 @@ fn get_image_data (context: &web_sys::CanvasRenderingContext2d) -> [u8; 1000000]
 	pixels
 }
 
-fn put_image_data (context: &web_sys::CanvasRenderingContext2d, data: &mut [u8; 1000000]) {
+fn put_image_data (context: &web_sys::CanvasRenderingContext2d, data: &mut PixelArray) {
 	let image_data = web_sys::ImageData::new_with_u8_clamped_array_and_sh(
 		wasm_bindgen::Clamped(data),
-		500,
-		500
+		U32_IMAGE_SIZE,
+		U32_IMAGE_SIZE
 	).expect("should have made image data but dint");
 
 	context
@@ -146,26 +152,24 @@ fn put_image_data (context: &web_sys::CanvasRenderingContext2d, data: &mut [u8; 
 }
 
 struct Pixels<'a> {
-	size: usize,
-	pixels: &'a mut [u8; 1000000]
+	pixels: &'a mut PixelArray
 }
 
 impl Pixels<'_> {
-	fn new(pixels: &mut [u8; 1000000]) -> Pixels {
+	fn new(pixels: &mut PixelArray) -> Pixels {
 		Pixels {
-			size: 500,
 			pixels
 		}
 	}
 
 	fn get(&self, point: Point) -> Pixel {
-		let start = point.to_pixel_index(self.size);
+		let start = point.to_pixel_index();
 		let range = &self.pixels[start..start+4];
 		Pixel::new(range[0], range[1], range[2], range[3])
 	}
 
 	fn set(&mut self, point: Point, value: Pixel) {
-		let start = point.to_pixel_index(self.size);
+		let start = point.to_pixel_index();
 		self.pixels[start] = value.red;
 		self.pixels[start + 1] = value.green;
 		self.pixels[start + 2] = value.blue;
@@ -187,7 +191,7 @@ impl Pixels<'_> {
 						blue,
 						alpha
 					};
-					let point = Point::from_pixel_index(index, 500);
+					let point = Point::from_pixel_index(index);
 					let next_pixel = function(pixel, point);
 					result.push((point, next_pixel))
 				},
@@ -227,7 +231,7 @@ pub fn roast() -> Result<(), JsValue> {
     set_panic_hook();
 
 	let context = get_context();
-	let image_data = context.get_image_data(0.0, 0.0, 500.0, 500.0).unwrap();
+	let image_data = context.get_image_data(0.0, 0.0, F_IMAGE_SIZE, F_IMAGE_SIZE).unwrap();
 	let mut data = [0; 1000000];
 	data.copy_from_slice(image_data.data().as_mut_slice());
 	let mut pixels = Pixels::new(&mut data);
@@ -303,9 +307,9 @@ pub fn frame() -> Result<(), JsValue> {
 
 		if
 			row < innerWidth ||
-			row > 500 - innerWidth ||
+			row > U_IMAGE_SIZE - innerWidth ||
 			column < innerWidth ||
-			column > 500 - innerWidth
+			column > U_IMAGE_SIZE - innerWidth
 		{
 			return Pixel::new(pixel.red - 200, pixel.blue - 200, pixel.green - 200, 255);
 		} else { pixel }
@@ -315,13 +319,13 @@ pub fn frame() -> Result<(), JsValue> {
 		let row = point.row;
 		let column = point.column;
 
-		if row < width || row > 500 - width {
+		if row < width || row > U_IMAGE_SIZE - width {
 			if row == column {
 				Pixel::new(0, 0, 0, 25)
 			} else {
 				Pixel::new(pixel.red + 240, pixel.green + 240, pixel.blue + 240, 255)
 			}
-		} else if column < width || column > 500 - width {
+		} else if column < width || column > U_IMAGE_SIZE - width {
 			if row == column {
 				Pixel::new(0, 0, 0, 255)
 			} else {
@@ -357,7 +361,7 @@ pub fn toast() -> Result<(), JsValue> {
 	gradient.add_color_stop(1.0, "#3b003b");
 
 	context.set_fill_style(&gradient);
-	context.fill_rect(0.0, 0.0, 500.0, 500.0);
+	context.fill_rect(0.0, 0.0, F_IMAGE_SIZE, F_IMAGE_SIZE);
 
 	context.set_global_composite_operation("copy");
 
@@ -378,7 +382,7 @@ pub fn trans() -> Result<(), JsValue> {
 
 	let colors = [blue, pink, white, white, pink, blue];
 
-	let gradient = context.create_linear_gradient(250.0, 0.0, 250.0, 500.0);
+	let gradient = context.create_linear_gradient(250.0, 0.0, 250.0, F_IMAGE_SIZE);
 
 	for (index, color) in colors.iter().enumerate() {
 		let step = index as f32 / colors.len() as f32;
@@ -399,7 +403,7 @@ pub fn trans() -> Result<(), JsValue> {
 	}
 
 	context.set_fill_style(&gradient);
-	context.fill_rect(0.0, 0.0, 500.0, 500.0);
+	context.fill_rect(0.0, 0.0, F_IMAGE_SIZE, F_IMAGE_SIZE);
 
 	context.set_global_composite_operation("copy");
 

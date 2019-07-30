@@ -274,7 +274,7 @@ var load = function load() {
     same: same,
     difference: difference
   };
-  context.drawImage(imageElement, Middle.x(measurements), Middle.y(measurements), Middle.w(measurements), Middle.h(measurements), 0, 0, 500, 500);
+  context.drawImage(imageElement, Middle.x(measurements), Middle.y(measurements), Middle.w(measurements), Middle.h(measurements), 0, 0, 1000, 1000);
 };
 
 var filterHistory = [];
@@ -414,7 +414,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53459" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55059" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
