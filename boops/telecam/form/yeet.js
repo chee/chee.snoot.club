@@ -1,5 +1,7 @@
 import Pixels from "./process-pixels/Cargo.toml"
 
+window.Pixels = Pixels
+
 let Middle = {
 	x({same, wide, long, difference}) {
 		if (same) return 0
@@ -88,6 +90,12 @@ let filter = filter => {
 
 document.querySelectorAll(".filters button").forEach(button => {
 	button.addEventListener("click", () => filter(button.id))
+})
+
+document.querySelectorAll(".filters [type='range']").forEach(range => {
+	range.addEventListener("mousemove", () => {
+		Pixels[range.id](range.value)
+	})
 })
 
 let reader = new window.FileReader()
