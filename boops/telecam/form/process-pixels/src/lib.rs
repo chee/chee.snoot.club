@@ -415,8 +415,67 @@ pub fn trans() -> Result<(), JsValue> {
 	context.set_fill_style(&gradient);
 	context.fill_rect(0.0, 0.0, F_IMAGE_SIZE, F_IMAGE_SIZE);
 
-	context.set_global_composite_operation("copy");
+	context.set_global_composite_operation("copy")
+		.expect("couldn't set globalCompositeOperation");
 
 	Ok(())
 }
 
+#[wasm_bindgen]
+pub fn flip_v() -> Result<(), JsValue> {
+	set_panic_hook();
+
+	let mut data = get_image_data(&get_context());
+	let mut pixels = Pixels::new(&mut data);
+	let mut original_data = get_image_data(&get_context());
+	let original_pixels = Pixels::new(&mut original_data);
+
+	pixels.process(|_pixel, point| {
+		original_pixels.get(Point::new(
+			U_IMAGE_SIZE - point.row - 1,
+			point.column
+		))
+	});
+
+	Ok(())
+}
+
+#[wasm_bindgen]
+pub fn flip_h() -> Result<(), JsValue> {
+	set_panic_hook();
+
+	let mut data = get_image_data(&get_context());
+	let mut pixels = Pixels::new(&mut data);
+	let mut original_data = get_image_data(&get_context());
+	let original_pixels = Pixels::new(&mut original_data);
+
+	pixels.process(|_pixel, point| {
+		original_pixels.get(Point::new(
+			point.row,
+			U_IMAGE_SIZE - point.column - 1
+		))
+	});
+
+	Ok(())
+}
+
+#[wasm_bindgen]
+pub fn rotate_90() -> Result<(), JsValue> {
+	set_panic_hook();
+
+	let mut data = get_image_data(&get_context());
+	let mut pixels = Pixels::new(&mut data);
+	let mut original_data = get_image_data(&get_context());
+	let original_pixels = Pixels::new(&mut original_data);
+
+	pixels.process(|_pixel, point| {
+		original_pixels.get(Point::new(
+			point.column,
+			point.row
+		))
+	});
+
+	flip_h()?;
+
+	Ok(())
+}
