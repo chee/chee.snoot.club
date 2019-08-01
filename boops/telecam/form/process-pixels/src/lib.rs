@@ -1,16 +1,20 @@
-
 #[macro_use]
 extern crate cfg_if;
 
 extern crate wasm_bindgen;
 extern crate web_sys;
 extern crate js_sys;
+extern crate colorsys;
+
+use std::convert::TryInto;
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
+use colorsys::{Rgb, Hsl};
 
-const F_IMAGE_SIZE: f64 = 500.0;
+const F_IMAGE_SIZE: f64 = 1000.0;
 const U_IMAGE_SIZE: usize = F_IMAGE_SIZE as usize;
 const U32_IMAGE_SIZE: u32 = F_IMAGE_SIZE as u32;
+const PIXEL_ARRAY_LENGTH: usize = U_IMAGE_SIZE * U_IMAGE_SIZE * 4;
 
 cfg_if! {
     // When the `console_error_panic_hook` feature is enabled, we can call the
@@ -110,36 +114,31 @@ impl Point {
 }
 
 fn get_context () -> web_sys::CanvasRenderingContext2d {
-    let document = web_sys::window().expect("window not present").document().expect("document not present");
-    let canvas = document.get_element_by_id("canvas").expect("where is canvas?");
-    let canvas: web_sys::HtmlCanvasElement = canvas
-        .dyn_into::<web_sys::HtmlCanvasElement>()
-        .map_err(|_| ())
-        .unwrap();
+	let document = web_sys::window().expect("window not present").document().expect("document not present");
+	let canvas = document.get_element_by_id("canvas").expect("where is canvas?");
+	let canvas: web_sys::HtmlCanvasElement = canvas
+		.dyn_into::<web_sys::HtmlCanvasElement>()
+		.map_err(|_| ())
+		.expect("yeet");
 
-    canvas
-        .get_context("2d")
-        .expect("where's the context?")
-        .expect("now what?")
-        .dyn_into::<web_sys::CanvasRenderingContext2d>()
-        .expect("couldn't dyn into context")
+	canvas
+		.get_context("2d")
+		.expect("where's the context?")
+		.expect("now what?")
+		.dyn_into::<web_sys::CanvasRenderingContext2d>()
+		.expect("couldn't dyn into context")
 }
 
-type PixelArray = [u8; U_IMAGE_SIZE * U_IMAGE_SIZE * 4];
-
-fn get_image_data (context: &web_sys::CanvasRenderingContext2d) -> PixelArray {
-	let mut data = context
+fn get_image_data (context: &web_sys::CanvasRenderingContext2d) -> Box<[u8]> {
+	let data: &[u8] = &context
 		.get_image_data(0.0, 0.0, F_IMAGE_SIZE, F_IMAGE_SIZE)
 		.expect("couldnt get image data")
 		.data();
 
-	let mut pixels = [0; 1000000];
-	pixels.copy_from_slice(data.as_mut_slice());
-
-	pixels
+	Box::from(data)
 }
 
-fn put_image_data (context: &web_sys::CanvasRenderingContext2d, data: &mut PixelArray) {
+fn put_image_data (context: &web_sys::CanvasRenderingContext2d, data: &mut [u8]) {
 	let image_data = web_sys::ImageData::new_with_u8_clamped_array_and_sh(
 		wasm_bindgen::Clamped(data),
 		U32_IMAGE_SIZE,
@@ -152,11 +151,11 @@ fn put_image_data (context: &web_sys::CanvasRenderingContext2d, data: &mut Pixel
 }
 
 struct Pixels<'a> {
-	pixels: &'a mut PixelArray
+	pixels: &'a mut [u8]
 }
 
 impl Pixels<'_> {
-	fn new(pixels: &mut PixelArray) -> Pixels {
+	fn new(pixels: &mut [u8]) -> Pixels {
 		Pixels {
 			pixels
 		}
@@ -228,12 +227,9 @@ fn contrast(pixels: &mut Pixels, options: ContrastOptions) {
 
 #[wasm_bindgen]
 pub fn roast() -> Result<(), JsValue> {
-    set_panic_hook();
+	set_panic_hook();
 
-	let context = get_context();
-	let image_data = context.get_image_data(0.0, 0.0, F_IMAGE_SIZE, F_IMAGE_SIZE).unwrap();
-	let mut data = [0; 1000000];
-	data.copy_from_slice(image_data.data().as_mut_slice());
+	let mut data = get_image_data(&get_context());
 	let mut pixels = Pixels::new(&mut data);
 
 	contrast(&mut pixels, ContrastOptions{
@@ -246,10 +242,9 @@ pub fn roast() -> Result<(), JsValue> {
 
 #[wasm_bindgen]
 pub fn frost() -> Result<(), JsValue> {
-    set_panic_hook();
+	set_panic_hook();
 
-	let canvas = get_context();
-	let mut data = get_image_data(&canvas);
+	let mut data = get_image_data(&get_context());
 	let mut pixels = Pixels::new(&mut data);
 
 	contrast(&mut pixels, ContrastOptions{
@@ -262,7 +257,7 @@ pub fn frost() -> Result<(), JsValue> {
 
 #[wasm_bindgen]
 pub fn dimmen() -> Result<(), JsValue> {
-    set_panic_hook();
+	set_panic_hook();
 
 	let mut data = get_image_data(&get_context());
 	let mut pixels = Pixels::new(&mut data);
@@ -274,7 +269,6 @@ pub fn dimmen() -> Result<(), JsValue> {
 
 	Ok(())
 }
-
 
 #[wasm_bindgen]
 pub fn bandw() -> Result<(), JsValue> {
@@ -298,18 +292,18 @@ pub fn frame() -> Result<(), JsValue> {
 	let mut data = get_image_data(&context);
 	let mut pixels = Pixels::new(&mut data);
 
-	let innerWidth = 15;
-	let width = innerWidth / 2;
+	let inner_width = 15;
+	let width = inner_width / 2;
 
 	pixels.process(|pixel, point| {
 		let row = point.row;
 		let column = point.column;
 
 		if
-			row < innerWidth ||
-			row > U_IMAGE_SIZE - innerWidth ||
-			column < innerWidth ||
-			column > U_IMAGE_SIZE - innerWidth
+			row < inner_width ||
+			row > U_IMAGE_SIZE - inner_width ||
+			column < inner_width ||
+			column > U_IMAGE_SIZE - inner_width
 		{
 			return Pixel::new(pixel.red - 200, pixel.blue - 200, pixel.green - 200, 255);
 		} else { pixel }
@@ -353,17 +347,25 @@ pub fn toast() -> Result<(), JsValue> {
 
 	let context = get_context();
 
-	context.set_global_composite_operation("screen");
+	context.set_global_composite_operation("screen")
+		.expect("couldn't set globalCompositeOperation");
 
-	let gradient = context.create_radial_gradient(250.0, 250.0, 0.0, 250.0, 250.0, 150.0).expect("unable to create a gradient? lol");
+	let gradient = context.create_radial_gradient(
+		F_IMAGE_SIZE / 2.0, F_IMAGE_SIZE / 2.0, 0.0,
+		F_IMAGE_SIZE / 2.0, F_IMAGE_SIZE / 2.0,
+		F_IMAGE_SIZE / 3.0
+	).expect("unable to create a gradient? lol");
 
-	gradient.add_color_stop(0.0, "#804e0f");
-	gradient.add_color_stop(1.0, "#3b003b");
+	gradient.add_color_stop(0.0, "#804e0f")
+		.expect("couldn't set color stop");
+	gradient.add_color_stop(1.0, "#3b003b")
+		.expect("couldn't set color stop");
 
 	context.set_fill_style(&gradient);
 	context.fill_rect(0.0, 0.0, F_IMAGE_SIZE, F_IMAGE_SIZE);
 
-	context.set_global_composite_operation("copy");
+	context.set_global_composite_operation("copy")
+		.expect("couldn't set globalCompositeOperation");
 
 	Ok(())
 }
@@ -374,7 +376,8 @@ pub fn trans() -> Result<(), JsValue> {
 
 	let context = get_context();
 
-	context.set_global_composite_operation("overlay");
+	context.set_global_composite_operation("overlay")
+		.expect("couldn't set globalCompositeOperation");
 
 	let blue = "#55cdfc";
 	let pink = "#f7a8b8";
@@ -382,21 +385,28 @@ pub fn trans() -> Result<(), JsValue> {
 
 	let colors = [blue, pink, white, white, pink, blue];
 
-	let gradient = context.create_linear_gradient(250.0, 0.0, 250.0, F_IMAGE_SIZE);
+	let gradient = context.create_linear_gradient(
+		F_IMAGE_SIZE / 2.0, 0.0,
+		F_IMAGE_SIZE / 2.0, F_IMAGE_SIZE
+	);
 
 	for (index, color) in colors.iter().enumerate() {
 		let step = index as f32 / colors.len() as f32;
 		match colors.get(index - 1) {
 			Some(last) => {
-				gradient.add_color_stop(step - 0.001, last);
-				gradient.add_color_stop(step, color);
+				gradient.add_color_stop(step - 0.001, last)
+					.expect("couldn't set color stop");
+				gradient.add_color_stop(step, color)
+					.expect("couldn't set color stop");
 			}
 			_ => {}
 		}
 		match colors.get(index + 1) {
 			Some(_next) => {
-				gradient.add_color_stop(step, color);
-				gradient.add_color_stop(step + 0.001, color);
+				gradient.add_color_stop(step, color)
+					.expect("couldn't set color stop");
+				gradient.add_color_stop(step + 0.001, color)
+					.expect("couldn't set color stop");
 			}
 			_ => {}
 		}
