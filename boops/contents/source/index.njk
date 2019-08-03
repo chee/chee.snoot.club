@@ -2,7 +2,9 @@
 layout: post.njk
 title: contents
 ---
-<h1>posts</h1>
+<h1>contents</h1>
+
+<h2>posts</h2>
 
 <ul class="post-list">
 {%- for post in collections.posts | reverse %}
@@ -17,3 +19,6 @@ title: contents
 	</li>
 {% endfor %}
 </ul>
+
+<h2>feed</h2>
+<a href="atom.xml">rss</a>
