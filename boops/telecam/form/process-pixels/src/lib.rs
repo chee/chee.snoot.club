@@ -14,7 +14,6 @@ use colorsys::{Rgb, Hsl};
 const F_IMAGE_SIZE: f64 = 1000.0;
 const U_IMAGE_SIZE: usize = F_IMAGE_SIZE as usize;
 const U32_IMAGE_SIZE: u32 = F_IMAGE_SIZE as u32;
-const PIXEL_ARRAY_LENGTH: usize = U_IMAGE_SIZE * U_IMAGE_SIZE * 4;
 
 cfg_if! {
     // When the `console_error_panic_hook` feature is enabled, we can call the
@@ -332,7 +331,7 @@ pub fn frame() -> Result<(), JsValue> {
 		let row = point.row;
 		let column = point.column;
 
-		if row <= 2 || row >= 498 || column <= 2 || column >= 498 {
+		if row <= 2 || row >= U_IMAGE_SIZE - 2 || column <= 2 || column >= U_IMAGE_SIZE - 2 {
 			return Pixel::new(22, 22, 22, 255);
 		} else { pixel }
 	});
