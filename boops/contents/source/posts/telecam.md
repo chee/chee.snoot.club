@@ -35,8 +35,8 @@ In case you're on one of the unsupported platforms, here's what it looks like:
 ![a screenshot of telecam](https://share.snoot.club/pevez/qumoh.png)
 
 There's also a form for uploading new photos living at
-https://chee.snoot.club/telecam/form which has filters (and the filters are
-written in Rust! it has Toast!)
+[https:\/\/chee.snoot.club\/telecam\/form](https://chee.snoot.club/telecam/form)
+which has filters (and the filters are written in Rust! it has Toast!)
 
 ![a screenshot of the form](https://share.snoot.club/lesej/rutiz.png)
 

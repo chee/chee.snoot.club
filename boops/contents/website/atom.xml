@@ -43,8 +43,8 @@ Isn&#39;t that cool? i think it&#39;s cool&lt;/p&gt;
 &lt;p&gt;In case you&#39;re on one of the unsupported platforms, here&#39;s what it looks like:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://share.snoot.club/pevez/qumoh.png&quot; alt=&quot;a screenshot of telecam&quot;&gt;&lt;/p&gt;
 &lt;p&gt;There&#39;s also a form for uploading new photos living at
-https:&lt;i&gt;&lt;i&gt;chee.snoot.club&lt;/i&gt;telecam&lt;/i&gt;form which has filters (and the filters are
-written in Rust! it has Toast!)&lt;/p&gt;
+&lt;a href=&quot;https://chee.snoot.club/telecam/form&quot;&gt;https://chee.snoot.club/telecam/form&lt;/a&gt;
+which has filters (and the filters are written in Rust! it has Toast!)&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://share.snoot.club/lesej/rutiz.png&quot; alt=&quot;a screenshot of the form&quot;&gt;&lt;/p&gt;
 &lt;h2&gt;So why does it not work in Safari?&lt;/h2&gt;
 &lt;p&gt;Apple really did some real shitty 90s Microsoft-level Embrace, Extend,
