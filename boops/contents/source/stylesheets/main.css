@@ -264,7 +264,7 @@ a img {
 .main {
 	font-size: 1.2em;
 	padding: 1.6em;
-	line-height: 1.2;
+	line-height: 1.4;
 	-webkit-text-size-adjust: 100%;
 	color: var(--dark);
 	text-rendering: optimizeLegibility;
