@@ -38,7 +38,8 @@ time to use that.&lt;/p&gt;
 &lt;li&gt;does not work on macOS Safari&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Here&#39;s a link that you can add to your newsreader or visit in your browser:
-&amp;lt;https:&lt;i&gt;&lt;i&gt;chee.snoot.club&lt;/i&gt;telecam&lt;/i&gt;index.xml&amp;gt;. Isn&#39;t that cool? i think it&#39;s cool&lt;/p&gt;
+&lt;a href=&quot;https://chee.snoot.club/telecam/index.xml&quot;&gt;https://chee.snoot.club/telecam/index.xml&lt;/a&gt;.
+Isn&#39;t that cool? i think it&#39;s cool&lt;/p&gt;
 &lt;p&gt;In case you&#39;re on one of the unsupported platforms, here&#39;s what it looks like:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://share.snoot.club/pevez/qumoh.png&quot; alt=&quot;a screenshot of telecam&quot;&gt;&lt;/p&gt;
 &lt;p&gt;There&#39;s also a form for uploading new photos living at
@@ -52,13 +53,12 @@ generic newsreader, and they made it the handler for all RSS feeds (even if you
 had another RSS reader installed).&lt;/p&gt;
 &lt;p&gt;They stopped displaying RSS feeds in Safari or iOS Safari, and opened the News app
 automatically they came out with the Apple News Format and the Apple Publishing
-platform  &lt;a href=&quot;https://t.co/nrNHV36ybO?amp=1&quot;&gt;(link: https:&lt;i&gt;&lt;i&gt;developer.apple.com&lt;/i&gt;news-publisher&lt;/i&gt;)
-developer.apple.com&lt;i&gt;news-publisher&lt;/i&gt;&lt;/a&gt;&lt;/p&gt;
+platform https:&lt;i&gt;&lt;i&gt;&lt;a href=&quot;http://developer.apple.com/&quot;&gt;developer.apple.com&lt;/a&gt;&lt;/i&gt;news-publisher&lt;/i&gt;&lt;/p&gt;
 &lt;p&gt;and then in (i think??) iOS 9.3 they stopped supporting RSS feeds from anything
 not in the publishing platform. but it’s still the default handler, and the
 Safaris still can’t display the feed, and News still hijacks it even if you have
 another newsreader installed&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://t.co/yWLlWHJW65?amp=1&quot;&gt;News.app&lt;/a&gt;  hijacks your legit rss feed and then
+&lt;p&gt;&lt;code&gt;News.app&lt;/code&gt; hijacks your legit rss feed and then
 errors out with “Cannot display content from this site” instead of letting you
 view the file or send it to your actual reader&lt;/p&gt;
 &lt;h2&gt;anyway&lt;/h2&gt;
