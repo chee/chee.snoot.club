@@ -1,11 +1,11 @@
 :root {
 	--red: #fd6976;
 	--pink: pink;
-	--blue: #59cee5;
-	--yellow: #fe8;
+	--blue: #177b8f;
+	--yellow: #fc8;
 	--green: #22fabe;
 	--light: #fff;
-	--dark: #333;
+	--dark: #000;
 	--black: #000;
 	--white: #fff;
 	--off-white: #fcfcf9;
@@ -29,6 +29,40 @@
 	--link-gradient: repeating-linear-gradient(to right, var(--red), var(--yellow), var(--blue), var(--red), var(--yellow));
 }
 
+rss::before {
+	content: "This is an RSS feed, you'll need to add this url to your newsreader.";
+	position: fixed;
+	background: #ff6600;
+	top: 0;
+	left: 0;
+	right: 0;
+	color: white;
+	font-weight: bold;
+	padding: 2em;
+}
+
+rss {
+	margin-top: 6em;
+}
+
+description {
+	display: none;
+}
+
+item > title {
+	font-weight: 600;
+}
+
+item > pubDate {
+	font-weight: 300;
+	font-size: 0.8em;
+	font-style: italic;
+}
+
+* {
+	box-sizing: border-box
+}
+
 @keyframes hover-slide {
 	0% {
 		background-position: 0% 100%;
@@ -48,6 +82,7 @@
 	color: var(--light);
 }
 
+:root,
 html {
 	font-family: var(--font-stack);
 }
@@ -55,15 +90,13 @@ html {
 body {
 	margin: 0;
 	background: var(--off-white);
-	font-size: 1.5em;
+	font-size: 1em;
 }
 
+channel > title,
 .header {
-	top: 0;
-	left: 0;
-	right: 0;
 	font-weight: bold;
-	font-size: 0.8em;
+	font-size: 0.9em;
 	padding: 2mm;
 }
 
@@ -88,6 +121,7 @@ body {
 	color: var(--black);
 }
 
+item,
 .main {
 	background: var(--white);
 	height: 100%;
@@ -105,6 +139,11 @@ body {
 
 .main:hover {
 	box-shadow: 0 0 0.12in rgba(200, 200, 200, 0.3);
+}
+
+item {
+	display: flex;
+	flex-direction: column;
 }
 
 h2 {
@@ -169,6 +208,8 @@ li:hover {
 	background-size: 100% 2px;
 	background-repeat: repeat-x;
 	background-position: 0 1.1em;
+	word-break: break-all;
+	word-break: break-word;
 }
 
 .main a,
@@ -213,9 +254,7 @@ li:hover {
 
 ol,
 ul {
-	margin: 0;
-	padding: 0;
-	border: 0;
+	display: contents;
 	font: inherit;
 	font-size: 100%;
 	vertical-align: baseline
@@ -256,11 +295,6 @@ a img {
 	border: none
 }
 
-.main,
-.main * {
-	box-sizing: border-box
-}
-
 .main {
 	font-size: 1.2em;
 	padding: 1.6em;
@@ -284,7 +318,11 @@ hr {
 
 .main ul,
 .main ol {
-	margin-bottom: .31429em
+	margin-bottom: .31429em;
+}
+
+.main li:before {
+	margin-left: -0.5em;
 }
 
 ul ul,
