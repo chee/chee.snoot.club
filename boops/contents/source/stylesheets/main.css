@@ -169,6 +169,8 @@ li:hover {
 	background-size: 100% 2px;
 	background-repeat: repeat-x;
 	background-position: 0 1.1em;
+	word-break: break-all;
+	word-break: break-word;
 }
 
 .main a,
