@@ -6,8 +6,8 @@ date: 2019-08-03T09:33:13.700Z
 so now my stance is:
 
 * fuck React
-* /fuck/ GraphQL
-* fuck `yarn`
+* fuck GraphQL
+* /fuck/ `yarn(1)`
 * fuck Facebook, Instagram, WhatsApp and anything else that makes that company
 seem like a cool place to work so they can continue hiring good developers to do
 terrible things
@@ -15,7 +15,7 @@ terrible things
 After deleting Instagram a few mornings ago, I thought I'd use my GDPR data
 request to build a page that contained all the photos that used to be there. I
 wanted to be able to post to it later, and I wanted an RSS feed. I recently
-learned ([you can include a CSS stylesheet from an XML
+learned [you can include a CSS stylesheet from an XML
 file](https://www.w3.org/TR/xml-stylesheet/), and was excited that this was the
 time to use that.
 
