@@ -59,7 +59,11 @@ module.exports = (request, response) => (async (request, response) => {
 		let date = new Date().toGMTString()
 
 		let entry = `
-		<item id="${guid}">
+		<item>
+			<xhtml:a
+				xmlns:xhtml="http://www.w3.org/1999/xhtml"
+				id="${guid}"
+			/>
 			<title>
 				${title}
 			</title>
@@ -67,7 +71,7 @@ module.exports = (request, response) => (async (request, response) => {
 				${date}
 			</pubDate>
 			<link href="https://chee.snoot.club/telecam/#${guid}"/>
-			<guid>${guid}</guid>
+			<guid isPermaLink="false">${guid}</guid>
 			<description>
 				&lt;img src="https://chee.snoot.club/telecam/photos/${guid}.jpg"&gt;
 			</description>
