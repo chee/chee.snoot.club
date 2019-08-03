@@ -70,7 +70,7 @@ module.exports = (request, response) => (async (request, response) => {
 			<pubDate>
 				${date}
 			</pubDate>
-			<link href="https://chee.snoot.club/telecam/#${guid}"/>
+			<link>https://chee.snoot.club/telecam/#${guid}</link>
 			<guid isPermaLink="false">${guid}</guid>
 			<description>
 				&lt;img src="https://chee.snoot.club/telecam/photos/${guid}.jpg"&gt;
