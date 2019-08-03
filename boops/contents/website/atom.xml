@@ -5,9 +5,67 @@
 		<description>please be kind</description>
 		<link href="https://chee.snoot.club/contents" />
 		<atom:link href="https://chee.snoot.club/contents/atom.xml" rel="self" type="application/rss+xml"/>
-		<pubDate>Mon, 28 Jan 2019 17:43:26 GMT</pubDate>
-		<lastBuildDate>Mon, 28 Jan 2019 17:43:26 GMT</lastBuildDate>
+		<pubDate>Sat, 03 Aug 2019 09:33:13 GMT</pubDate>
+		<lastBuildDate>Sat, 03 Aug 2019 09:33:13 GMT</lastBuildDate>
 		<generator>chee rabbits</generator>
+			
+			<item>
+				<title>Telecam</title>
+				<link href="https://chee.snoot.club/contents/telecam/"/>
+				<pubDate>Sat, 03 Aug 2019 09:33:13 GMT</pubDate>
+				<guid>https://chee.snoot.club/contents/telecam/</guid>
+				<description>&lt;h1&gt;Telecam&lt;/h1&gt;
+&lt;p&gt;so now my stance is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;fuck React&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;fuck&lt;/i&gt; GraphQL&lt;/li&gt;
+&lt;li&gt;fuck &lt;code&gt;yarn&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;fuck Facebook, Instagram, WhatsApp and anything else that makes that company
+seem like a cool place to work so they can continue hiring good developers to do
+terrible things&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;After deleting Instagram a few mornings ago, I thought I&#39;d use my GDPR data
+request to build a page that contained all the photos that used to be there. I
+wanted to be able to post to it later, and I wanted an RSS feed. I recently
+learned (&lt;a href=&quot;https://www.w3.org/TR/xml-stylesheet/&quot;&gt;you can include a CSS stylesheet from an XML
+file&lt;/a&gt;, and was excited that this was the
+time to use that.&lt;/p&gt;
+&lt;p&gt;I built an RSS feed that&#39;s also the website for the feed 😊.&lt;/p&gt;
+&lt;p&gt;Before I send you the link, &lt;b&gt;Disclaimer&lt;/b&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;big page (30mb)&lt;/li&gt;
+&lt;li&gt;does not work on iOS&lt;/li&gt;
+&lt;li&gt;does not work on macOS Safari&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here&#39;s a link that you can add to your newsreader or visit in your browser:
+&amp;lt;https:&lt;i&gt;&lt;i&gt;chee.snoot.club&lt;/i&gt;telecam&lt;/i&gt;index.xml&amp;gt;. Isn&#39;t that cool? i think it&#39;s cool&lt;/p&gt;
+&lt;p&gt;In case you&#39;re on one of the unsupported platforms, here&#39;s what it looks like:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://share.snoot.club/pevez/qumoh.png&quot; alt=&quot;a screenshot of telecam&quot;&gt;&lt;/p&gt;
+&lt;p&gt;There&#39;s also a form for uploading new photos living at
+https:&lt;i&gt;&lt;i&gt;chee.snoot.club&lt;/i&gt;telecam&lt;/i&gt;form which has filters (and the filters are
+written in Rust! it has Toast!)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://share.snoot.club/lesej/rutiz.png&quot; alt=&quot;a screenshot of the form&quot;&gt;&lt;/p&gt;
+&lt;h2&gt;So why does it not work in Safari?&lt;/h2&gt;
+&lt;p&gt;Apple really did some real shitty 90s Microsoft-level Embrace, Extend,
+Extinguish move on their platforms with RSS. when News.app came out it was a
+generic newsreader, and they made it the handler for all RSS feeds (even if you
+had another RSS reader installed).&lt;/p&gt;
+&lt;p&gt;They stopped displaying RSS feeds in Safari or iOS Safari, and opened the News app
+automatically they came out with the Apple News Format and the Apple Publishing
+platform  &lt;a href=&quot;https://t.co/nrNHV36ybO?amp=1&quot;&gt;(link: https:&lt;i&gt;&lt;i&gt;developer.apple.com&lt;/i&gt;news-publisher&lt;/i&gt;)
+developer.apple.com&lt;i&gt;news-publisher&lt;/i&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;and then in (i think??) iOS 9.3 they stopped supporting RSS feeds from anything
+not in the publishing platform. but it’s still the default handler, and the
+Safaris still can’t display the feed, and News still hijacks it even if you have
+another newsreader installed&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://t.co/yWLlWHJW65?amp=1&quot;&gt;News.app&lt;/a&gt;  hijacks your legit rss feed and then
+errors out with “Cannot display content from this site” instead of letting you
+view the file or send it to your actual reader&lt;/p&gt;
+&lt;h2&gt;anyway&lt;/h2&gt;
+&lt;p&gt;please subscribe to my feed. the code, as always, is available in
+&lt;a href=&quot;https://github.com/chee/chee.snoot.club/&quot;&gt;the chee.snoot.club repo&lt;/a&gt;&lt;/p&gt;
+</description>
+			</item>
 			
 			<item>
 				<title>banana split recipe</title>
