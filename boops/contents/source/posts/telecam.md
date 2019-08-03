@@ -49,7 +49,7 @@ had another RSS reader installed).
 
 They stopped displaying RSS feeds in Safari or iOS Safari, and opened the News app
 automatically they came out with the Apple News Format and the Apple Publishing
-platform https://developer.apple.com/news-publisher/
+platform https:\/\/developer.apple.com\/news-publisher\/
 
 and then in (i think??) iOS 9.3 they stopped supporting RSS feeds from anything
 not in the publishing platform. but it’s still the default handler, and the
