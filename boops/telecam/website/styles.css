@@ -3,26 +3,41 @@
 	font-family: avenir next, sans-sans-serif;
 }
 
+::selection {
+	background-color: #ff5a70;
+	color: white;
+}
+
+rss {
+	margin-top: 2em;
+}
+
 channel {
 	display: flex;
 	flex-direction: column-reverse;
 	margin-top: 3.2rem;
 }
 
-channel > title {
+channel > title,
+channel > description {
 	position: absolute;
-	top: 0;
-	background: white;
 	display: block;
-	font-size: 2em;
-	font-weight: bold;
+	text-align: center;
+	width: 100%;
+}
+
+channel > title {
+	top: 0;
+	font-size: 2.2em;
+	font-weight: 600;
+	background: #abe;
+	color: white;
 }
 
 channel > description {
-	position: absolute;
-	top: 2rem;
-	background: white;
-	font-size: 1.2em;
+	background: #cee;
+	top: 2.7rem;
+	font-size: 1em;
 	font-style: italic;
 	color: #333;
 }
@@ -47,33 +62,34 @@ item {
 	text-align: center;
 }
 
+item + item {
+	margin-bottom: 5em;
+}
+
+item > * + * {
+	margin-bottom: 1em;
+}
+
 item > title {
 	display: block;
 	font-size: 2em;
+	font-weight: 600;
 }
 
 item > pubDate {
 	display: block;
 	text-transform: lowercase;
 	font-size: 0.8em;
+	font-style: italic;
+	font-weight: 300;
 }
 
+item > description,
 item > guid {
 	display: none;
 }
 
-item > description {
+img {
 	display: block;
-	background: #333;
-	color: #3c3;
-	font-family: fira code, monospace;
-	padding: 2em;
-	margin: 1em 0;
-
-	/* actualy */
-	display: none;
-}
-
-item > xhtml\:img {
-	display: block;
+	border-radius: 1%;
 }
