@@ -27,7 +27,8 @@ Before I send you the link, *Disclaimer*:
 * does not work on macOS Safari
 
 Here's a link that you can add to your newsreader or visit in your browser:
-<https://chee.snoot.club/telecam/index.xml>. Isn't that cool? i think it's cool
+[https:\/\/chee.snoot.club\/telecam\/index.xml](https://chee.snoot.club/telecam/index.xml).
+Isn't that cool? i think it's cool
 
 In case you're on one of the unsupported platforms, here's what it looks like:
 
@@ -48,15 +49,14 @@ had another RSS reader installed).
 
 They stopped displaying RSS feeds in Safari or iOS Safari, and opened the News app
 automatically they came out with the Apple News Format and the Apple Publishing
-platform  [(link: https://developer.apple.com/news-publisher/)
-developer.apple.com/news-publisher/](https://t.co/nrNHV36ybO?amp=1)
+platform https://developer.apple.com/news-publisher/
 
 and then in (i think??) iOS 9.3 they stopped supporting RSS feeds from anything
 not in the publishing platform. but it’s still the default handler, and the
 Safaris still can’t display the feed, and News still hijacks it even if you have
 another newsreader installed
 
-[News.app](https://t.co/yWLlWHJW65?amp=1)  hijacks your legit rss feed and then
+`News.app` hijacks your legit rss feed and then
 errors out with “Cannot display content from this site” instead of letting you
 view the file or send it to your actual reader
 
