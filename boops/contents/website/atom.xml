@@ -4,7 +4,7 @@
 	<channel>
 		<title>chee/contents</title>
 		<description>please be kind</description>
-		<link href="https://chee.snoot.club/contents" />
+		<link>https://chee.snoot.club/contents</link>
 		<atom:link href="https://chee.snoot.club/contents/atom.xml" rel="self" type="application/rss+xml"/>
 		<pubDate>Sat, 03 Aug 2019 09:33:13 GMT</pubDate>
 		<lastBuildDate>Sat, 03 Aug 2019 09:33:13 GMT</lastBuildDate>
@@ -12,7 +12,7 @@
 			
 			<item>
 				<title>Telecam</title>
-				<link href="https://chee.snoot.club/contents/telecam/"/>
+				<link>https://chee.snoot.club/contents/telecam/</link>
 				<pubDate>Sat, 03 Aug 2019 09:33:13 GMT</pubDate>
 				<guid>https://chee.snoot.club/contents/telecam/</guid>
 				<description>&lt;h1&gt;Telecam&lt;/h1&gt;
@@ -70,7 +70,7 @@ view the file or send it to your actual reader&lt;/p&gt;
 			
 			<item>
 				<title>banana split recipe</title>
-				<link href="https://chee.snoot.club/contents/%F0%9F%91%A6%F0%9F%8D%8C%F0%9F%91%A7/"/>
+				<link>https://chee.snoot.club/contents/%F0%9F%91%A6%F0%9F%8D%8C%F0%9F%91%A7/</link>
 				<pubDate>Mon, 28 Jan 2019 17:43:26 GMT</pubDate>
 				<guid>https://chee.snoot.club/contents/%F0%9F%91%A6%F0%9F%8D%8C%F0%9F%91%A7/</guid>
 				<description>&lt;h1&gt;banana split recipe&lt;/h1&gt;
@@ -112,7 +112,7 @@ view the file or send it to your actual reader&lt;/p&gt;
 			
 			<item>
 				<title>getting it right the first time is the wrong goal</title>
-				<link href="https://chee.snoot.club/contents/getting-it-right/"/>
+				<link>https://chee.snoot.club/contents/getting-it-right/</link>
 				<pubDate>Sat, 26 Aug 2017 00:51:25 GMT</pubDate>
 				<guid>https://chee.snoot.club/contents/getting-it-right/</guid>
 				<description>&lt;h1&gt;getting it right the first time is the wrong goal&lt;/h1&gt;
@@ -146,7 +146,7 @@ ready for production.&lt;/p&gt;
 			
 			<item>
 				<title>safely accessing your bash-on-windows files from windows 10</title>
-				<link href="https://chee.snoot.club/contents/safely-accessing-your-bash-on-windows-files-from-windows-10/"/>
+				<link>https://chee.snoot.club/contents/safely-accessing-your-bash-on-windows-files-from-windows-10/</link>
 				<pubDate>Sun, 13 Aug 2017 17:10:42 GMT</pubDate>
 				<guid>https://chee.snoot.club/contents/safely-accessing-your-bash-on-windows-files-from-windows-10/</guid>
 				<description>&lt;h1&gt;safely accessing your bash-on-windows files from windows 10&lt;/h1&gt;
@@ -209,7 +209,7 @@ creative writing class when i was in high school&lt;/li&gt;
 			
 			<item>
 				<title>keep it to yourself</title>
-				<link href="https://chee.snoot.club/contents/keep-it-to-yourself/"/>
+				<link>https://chee.snoot.club/contents/keep-it-to-yourself/</link>
 				<pubDate>Tue, 21 Mar 2017 12:28:02 GMT</pubDate>
 				<guid>https://chee.snoot.club/contents/keep-it-to-yourself/</guid>
 				<description>&lt;h1&gt;keep it to yourself&lt;/h1&gt;
@@ -255,7 +255,7 @@ anyone anyway because fuck them.&lt;/p&gt;
 			
 			<item>
 				<title>fosdem 2017</title>
-				<link href="https://chee.snoot.club/contents/fosdem-2017/"/>
+				<link>https://chee.snoot.club/contents/fosdem-2017/</link>
 				<pubDate>Mon, 06 Feb 2017 15:38:47 GMT</pubDate>
 				<guid>https://chee.snoot.club/contents/fosdem-2017/</guid>
 				<description>&lt;h1&gt;fosdem 2017&lt;/h1&gt;
@@ -284,7 +284,7 @@ time&lt;/p&gt;
 			
 			<item>
 				<title>adding commands to git</title>
-				<link href="https://chee.snoot.club/contents/adding-commands-to-git/"/>
+				<link>https://chee.snoot.club/contents/adding-commands-to-git/</link>
 				<pubDate>Thu, 12 Jan 2017 22:11:29 GMT</pubDate>
 				<guid>https://chee.snoot.club/contents/adding-commands-to-git/</guid>
 				<description>&lt;h1&gt;adding commands to git&lt;/h1&gt;
@@ -308,7 +308,7 @@ something like this:&lt;/p&gt;
 			
 			<item>
 				<title>building firefox os on a Macintosh</title>
-				<link href="https://chee.snoot.club/contents/building-firefox-os-on-a-macintosh/"/>
+				<link>https://chee.snoot.club/contents/building-firefox-os-on-a-macintosh/</link>
 				<pubDate>Sat, 08 Dec 2012 13:10:03 GMT</pubDate>
 				<guid>https://chee.snoot.club/contents/building-firefox-os-on-a-macintosh/</guid>
 				<description>&lt;h1&gt;building firefox os on a Macintosh&lt;/h1&gt;
@@ -465,7 +465,7 @@ stat. I did it like this:&lt;/p&gt;
 			
 			<item>
 				<title>Making git-svn work over SSH tunnel, SOCKS proxy + HTTP proxy</title>
-				<link href="https://chee.snoot.club/contents/making-git-svn-work-over-ssh-tunnel-socks-proxy-http-proxy/"/>
+				<link>https://chee.snoot.club/contents/making-git-svn-work-over-ssh-tunnel-socks-proxy-http-proxy/</link>
 				<pubDate>Sun, 25 Nov 2012 12:58:48 GMT</pubDate>
 				<guid>https://chee.snoot.club/contents/making-git-svn-work-over-ssh-tunnel-socks-proxy-http-proxy/</guid>
 				<description>&lt;h1&gt;Making git-svn work over SSH tunnel, SOCKS proxy + HTTP proxy&lt;/h1&gt;
@@ -555,24 +555,6 @@ not the only person who ever found out how to install Wireshark.&lt;/p&gt;
 </description>
 			</item>
 	</channel>
-	<!--xhtml:script
-		xmlns:xhtml="http://www.w3.org/1999/xhtml">
-		(function crime () {
-			try {
-				document.querySelectorAll("description").forEach(description => {
-					description.innerHTML = description.innerHTML.replace(
-						/&amp;lt;(\/)?(.+?)&amp;gt;/g,
-						(_, slash, tag) => {
-							return slash
-								? `&lt;/xhtml:${tag}>`
-								: `&lt;xhtml:${tag} xmlns:xhtml="http://www.w3.org/1999/xhtml">`
-						})
-				})
-			} catch {
-				crime()
-			}
-		})()
-	</xhtml:script-->
 
 	<xhtml:script
 		xmlns:xhtml="http://www.w3.org/1999/xhtml">

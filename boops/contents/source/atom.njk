@@ -7,7 +7,7 @@ permalink: atom.xml
 	<channel>
 		<title>chee/contents</title>
 		<description>please be kind</description>
-		<link href="{{root}}" />
+		<link>{{root}}</link>
 		<atom:link href="{{root}}/atom.xml" rel="self" type="application/rss+xml"/>
 		<pubDate>{{ collections.posts | rssLastUpdatedDate | toGmtString }}</pubDate>
 		<lastBuildDate>{{ collections.posts | rssLastUpdatedDate | toGmtString }}</lastBuildDate>
@@ -16,31 +16,13 @@ permalink: atom.xml
 			{% set absolutePostUrl %}{{ post.url | url | absoluteUrl(root) }}{% endset %}
 			<item>
 				<title>{{ post.data.title }}</title>
-				<link href="{{ absolutePostUrl }}"/>
+				<link>{{ absolutePostUrl }}</link>
 				<pubDate>{{ post.date | toGmtString }}</pubDate>
 				<guid>{{ absolutePostUrl }}</guid>
 				<description>{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</description>
 			</item>
 		{%- endfor %}
 	</channel>
-	<!--xhtml:script
-		xmlns:xhtml="http://www.w3.org/1999/xhtml">
-		(function crime () {
-			try {
-				document.querySelectorAll("description").forEach(description => {
-					description.innerHTML = description.innerHTML.replace(
-						/&amp;lt;(\/)?(.+?)&amp;gt;/g,
-						(_, slash, tag) => {
-							return slash
-								? `&lt;/xhtml:${tag}>`
-								: `&lt;xhtml:${tag} xmlns:xhtml="http://www.w3.org/1999/xhtml">`
-						})
-				})
-			} catch {
-				crime()
-			}
-		})()
-	</xhtml:script-->
 
 	<xhtml:script
 		xmlns:xhtml="http://www.w3.org/1999/xhtml">
