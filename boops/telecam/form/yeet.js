@@ -33,9 +33,6 @@ let filterHistory = []
 let filterFuture = []
 
 let load = () => {
-	filterHistory = []
-	filterFuture = []
-
 	let canvas = document.getElementById("canvas")
 	let context = canvas.getContext("2d")
 
@@ -119,9 +116,15 @@ reader.addEventListener("load", event => {
 
 let fileElement = document.getElementById("file")
 
-let readFile = () => reader.readAsDataURL(fileElement.files[0])
+let readFile = () => {
+	reader.readAsDataURL(fileElement.files[0])
+}
 
-fileElement.addEventListener("change", readFile)
+fileElement.addEventListener("change", () => {
+	filterHistory = []
+	filterFuture = []
+	readFile()
+})
 
 if (fileElement.files[0]) {
 	readFile()
