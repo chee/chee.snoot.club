@@ -29,7 +29,13 @@ let Middle = {
 	},
 }
 
+let filterHistory = []
+let filterFuture = []
+
 let load = () => {
+	filterHistory = []
+	filterFuture = []
+
 	let canvas = document.getElementById("canvas")
 	let context = canvas.getContext("2d")
 
@@ -56,8 +62,6 @@ let load = () => {
 	)
 }
 
-let filterHistory = []
-let filterFuture = []
 let applyHistory = () => {
 	load()
 	filterHistory.forEach(filter => {
@@ -155,11 +159,17 @@ document.getElementById("yeet").addEventListener("click", event => {
 				tick.textContent = good ? "✓" : "✗"
 				next.append(tick)
 				document.body.append(next)
+				next.addEventListener("click", () => {
+					location.reload("yeet")
+				})
 			}
 			fetch("post", {
 				method: "POST",
 				body: data,
 			})
+				.then(response =>
+					response.ok || Promise.reject()
+				)
 				.then(() => {
 					destroy("good")
 				})

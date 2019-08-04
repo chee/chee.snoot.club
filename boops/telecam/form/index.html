@@ -3,7 +3,23 @@
 <title>Can't you be cool, like me?</title>
 <meta
 	name="viewport"
-	content=width=device-width,initial-scale=1
+	content="width=device-width,initial-scale=1"
+/>
+<meta
+	name=”apple-mobile-web-app-capable”
+	content=”yes”
+/>
+<meta
+	name="apple-mobile-web-app-status-bar-style"
+	content="white"
+/>
+<link
+	rel="apple-touch-icon"
+	href="./telecam_touch_icon.png"
+/>
+<link
+	href="./telecam_touch_startup_image.png"
+	rel="apple-touch-startup-image"
 />
 <style>
 	:root {
@@ -118,7 +134,8 @@
 		grid-template-columns: repeat(8, auto);
 		border: 1px solid #ccc;
 	}
-	.filters button {
+	.filters > * {
+		touch-action: manipulation;
 		font-size: 1em;
 		height: 4em;
 		width: 100%;
@@ -128,31 +145,31 @@
 		cursor: pointer;
 		position: relative;
 	}
-	.filters button:hover {
+	.filters > *:hover {
 		background: #eee;
 	}
-	.filters button + button {
+	.filters > * + * {
 		border-left: 1px solid #eee;
 	}
-	.filters button:nth-child(1):hover {
+	.filters > :nth-child(1):hover {
 		background: linear-gradient(to bottom left, red, orange);
 	}
-	.filters button:nth-child(2):hover {
+	.filters > :nth-child(2):hover {
 		background: linear-gradient(to bottom left, orange, yellow);
 	}
-	.filters button:nth-child(3):hover {
+	.filters > :nth-child(3):hover {
 		background: linear-gradient(to bottom left, yellow, lightgreen);
 	}
-	.filters button:nth-child(4):hover {
+	.filters > :nth-child(4):hover {
 		background: linear-gradient(to bottom left, lightseagreen, skyblue);
 	}
-	.filters button:nth-child(5):hover {
+	.filters > :nth-child(5):hover {
 		background: linear-gradient(to bottom left, aliceblue, indigo);
 	}
-	.filters button:nth-child(6):hover {
+	.filters > :nth-child(6):hover {
 		background: linear-gradient(to bottom left, indigo, violet);
 	}
-	.filters button:nth-child(7):hover {
+	.filters > :nth-child(7):hover {
 		background: linear-gradient(to bottom left, violet, #ff2a50);
 	}
 	@media (max-width: 555px) {
