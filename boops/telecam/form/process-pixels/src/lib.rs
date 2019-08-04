@@ -6,10 +6,8 @@ extern crate web_sys;
 extern crate js_sys;
 extern crate colorsys;
 
-use std::convert::TryInto;
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
-use colorsys::{Rgb, Hsl};
 
 const F_IMAGE_SIZE: f64 = 1000.0;
 const U_IMAGE_SIZE: usize = F_IMAGE_SIZE as usize;
@@ -304,7 +302,12 @@ pub fn frame() -> Result<(), JsValue> {
 			column < inner_width ||
 			column > U_IMAGE_SIZE - inner_width
 		{
-			return Pixel::new(pixel.red - 200, pixel.blue - 200, pixel.green - 200, 255);
+			return Pixel::new(
+				pixel.red.saturating_sub(200),
+				pixel.blue.saturating_sub(200),
+				pixel.green.saturating_sub(200),
+				255
+			);
 		} else { pixel }
 	});
 
@@ -316,13 +319,23 @@ pub fn frame() -> Result<(), JsValue> {
 			if row == column {
 				Pixel::new(0, 0, 0, 25)
 			} else {
-				Pixel::new(pixel.red + 240, pixel.green + 240, pixel.blue + 240, 255)
+				Pixel::new(
+					pixel.red.saturating_add(240),
+					pixel.green.saturating_add(240),
+					pixel.blue.saturating_add(240),
+					255
+				)
 			}
 		} else if column < width || column > U_IMAGE_SIZE - width {
 			if row == column {
 				Pixel::new(0, 0, 0, 255)
 			} else {
-				Pixel::new(pixel.red + 220, pixel.green + 220, pixel.blue + 220, 255)
+				Pixel::new(
+					pixel.red.saturating_add(220),
+					pixel.green.saturating_add(220),
+					pixel.blue.saturating_add(220),
+					255
+				)
 			}
 		} else { pixel }
 	});
