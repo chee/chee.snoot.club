@@ -1,22 +1,10 @@
-<!doctype html>
-<meta charset="utf-8">
-<title>Can't you be cool, like me?</title>
-<meta
-	name="viewport"
-	content="width=device-width,initial-scale=1"
-/>
-<meta
-	name="apple-mobile-web-app-capable"
-	content="yes"
-/>
-<meta
-	name="apple-mobile-web-app-status-bar-style"
-	content="white"
-/>
-<link
-	rel="apple-touch-icon"
-	href="./telecam_touch_icon.png"
-/>
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<title>Telecamform</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="white" />
+<link rel="apple-touch-icon" href="./telecam_touch_icon.png" />
 <link
 	href="./telecam_touch_startup_image.png"
 	rel="apple-touch-startup-image"
@@ -26,11 +14,10 @@
 		margin: 0;
 		transform-origin: 50% 0;
 	}
-	:root.yay {
-		transform: initial!important;
+	:root.overlay {
+		transform: initial !important;
 	}
-	main.yay,
-	main.no {
+	main.overlay {
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -41,12 +28,6 @@
 		justify-content: center;
 		color: white;
 		font-size: 6em;
-	}
-	main.yay {
-		background: lightseagreen;
-	}
-	main.no {
-		background: lightcoral;
 	}
 	canvas {
 		height: 500px;
@@ -112,7 +93,7 @@
 		font-size: 1.2em;
 	}
 	[type="submit"]:active {
-		box-shadow: inset 2px 2px 2px rgba(0, 50, 0, 0.5);;
+		box-shadow: inset 2px 2px 2px rgba(0, 50, 0, 0.5);
 	}
 	.file {
 		width: 500px;
@@ -128,6 +109,26 @@
 	}
 	.file-label {
 		position: absolute;
+	}
+	.file::after {
+		display: block;
+		content: "";
+		position: absolute;
+		height: 1em;
+		width: 1em;
+		font-size: 1rem;
+		color: pink;
+		font-weight: bold;
+		text-shadow: -2px 2px black;
+		opacity: 0;
+		bottom: 1em;
+		right: 1em;
+	}
+	.replaying .file::after {
+		transition: transform 100s ease, opacity 0ms 100ms linear;
+		content: "|";
+		transform: rotate(1000turn);
+		opacity: 0.5;
 	}
 	.filters {
 		display: grid;
@@ -210,81 +211,41 @@
 	}
 </style>
 <main id="main">
-<form
-	method="POST"
-	action="post"
-	enctype="multipart/form-data">
-	<label class="little-wrap title">
-		<span class="little-label">
-			Name
-		</span>
-		<input type="text" name="title" autofocus id="titleInput"/>
-	</label>
-	<label class="file">
-		<span class="file-label" id="image_label">
-			Choose image...
-		</span>
-		<input
-			class="image"
-			type="file"
-			id="file"
-			name="photo"
-		/>
-		<canvas
-			width="1000"
-			height="1000"
-			id="canvas">
-		</canvas>
-	</label>
-	<label class="little-wrap secret">
-		<span class="little-label">
-			Secret
-		</span>
-		<input name="secret" id="secretInput"></input>
-	</label>
-	<input
-		id="yeet"
-		value="Yeet"
-		type="submit"
-	/>
-</form>
-<section class="filters">
-	<button id="trans">
-		🏳️‍⚧️<br>trans
-	</button>
-	<button id="toast">
-		🍞🔥<br>toast
-	</button>
-	<button id="roast">
-		🌞☀️<br>roast
-	</button>
-	<button id="frost">
-		🐧☃<br>frost
-	</button>
-	<button id="bandw">
-		⬛️⬜️<br>b & w
-	</button>
-	<button id="frame">
-		🖼𐃎<br>frame
-	</button>
-	<button id="dimmen">
-		👩‍🦳⬜️<br>dimmen
-	</button>
-	<button id="undo">
-		⎌🔙<br>undo
-	</button>
-	<button id="redo">
-		⏭👌<br>redo
-	</button>
-	<button id="flip_h">
-		↔↔<br>flip_h
-	</button>
-	<button id="flip_v">
-		↕↕<br>flip_v
-	</button>
-	<button id="rotate_90">
-		⤵⤵<br>rotate_90
-	</button>
-</section>
+	<form method="POST" action="post" enctype="multipart/form-data">
+		<label class="little-wrap title">
+			<span class="little-label">
+				Name
+			</span>
+			<input type="text" name="title" autofocus id="titleInput" />
+		</label>
+		<label class="file">
+			<span class="file-label" id="imageLabel">
+				Choose image...
+			</span>
+			<input class="image" type="file" id="file" name="photo" />
+			<canvas width="1000" height="1000" id="canvas"> </canvas>
+		</label>
+		<label class="little-wrap secret">
+			<span class="little-label">
+				Secret
+			</span>
+			<input name="secret" id="secretInput" />
+		</label>
+		<input id="yeet" value="Yeet" type="submit" />
+	</form>
+	<section class="filters">
+		<button id="trans">🏳️‍⚧️<br />trans</button>
+		<button id="toast">🍞🔥<br />toast</button>
+		<button id="roast">🌞☀️<br />roast</button>
+		<button id="frost">🐧☃<br />frost</button>
+		<button id="bandw">⬛️⬜️<br />b & w</button>
+		<button id="frame">🖼𐃎<br />frame</button>
+		<button id="dimmen">👩‍🦳⬜️<br />dimmen</button>
+		<button id="undo">⎌🔙<br />undo</button>
+		<button id="redo">⏭👌<br />redo</button>
+		<button id="flip_h">↔↔<br />flip_h</button>
+		<button id="flip_v">↕↕<br />flip_v</button>
+		<button id="rotate_90">⤵⤵<br />rotate_90</button>
+	</section>
 </main>
 <script src="yeet.js"></script>

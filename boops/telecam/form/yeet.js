@@ -1,41 +1,26 @@
 import Pixels from "./process-pixels/Cargo.toml"
+import Middle from "./middle"
+import Timeline from "./timeline"
 
 window.Pixels = Pixels
+let IMAGE_SIZE = 1000
+let fileElement = document.getElementById("file")
+let reader = new window.FileReader()
+let timeline = new Timeline()
+let imageElement = document.createElement("img")
 
-let Middle = {
-	x({same, wide, long, difference}) {
-		if (same) return 0
-		if (wide) return difference / 2
-		if (long) return 0
-		throw new Error("ratio must be one of: same, wide, long")
-	},
-	y({same, wide, long, difference}) {
-		if (same) return 0
-		if (wide) return 0
-		if (long) return difference / 2
-		throw new Error("ratio must be one of: same, wide, long")
-	},
-	h({same, wide, long, difference, height}) {
-		if (same) return height
-		if (wide) return height
-		if (long) return height - difference
-		throw new Error("ratio must be one of: same, wide, long")
-	},
-	w({same, wide, long, difference, width}) {
-		if (same) return width
-		if (wide) return width - difference
-		if (long) return width
-		throw new Error("ratio must be one of: same, wide, long")
-	},
-}
-
-let filterHistory = []
-let filterFuture = []
-
-let load = () => {
+function setupCanvas() {
 	let canvas = document.getElementById("canvas")
 	let context = canvas.getContext("2d")
+	context.imageSmoothingEnabled = true
+	context.imageSmoothingQuality = "high"
+	context.globalCompositeOperation = "copy"
+}
 
+setupCanvas()
+
+function drawImageElementToCanvas({imageElement, canvas}) {
+	let context = canvas.getContext("2d")
 	let width = imageElement.naturalWidth
 	let height = imageElement.naturalHeight
 
@@ -54,75 +39,60 @@ let load = () => {
 		Middle.h(measurements),
 		0,
 		0,
-		1000,
-		1000
+		IMAGE_SIZE,
+		IMAGE_SIZE
 	)
 }
 
-let applyHistory = () => {
-	load()
-	filterHistory.forEach(filter => {
-		Pixels[filter]()
-	})
-}
-
-let undo = () => {
-	let last = filterHistory.pop()
-	if (!last) return
-	filterFuture.push(last)
-	applyHistory()
-}
-
-let redo = () => {
-	let last = filterFuture.pop()
-	if (!last) return
-	filterHistory.push(last)
-	applyHistory()
-}
-let filter = filter => {
-	if (filter == "undo") {
-		return undo()
-	} else if (filter == "redo") {
-		return redo()
+async function replayTimeline(timeline) {
+	let replaying = document.documentElement.classList.contains("replaying")
+	if (!replaying) {
+		let canvas = document.getElementById("canvas")
+		drawImageElementToCanvas({imageElement, canvas})
+		document.documentElement.classList.add("replaying")
+		let index = 0
+		let filter
+		while ((filter = timeline.history[index++])) {
+			await new Promise(resolve => {
+				requestAnimationFrame(() => {
+					Pixels[filter]()
+					resolve()
+				})
+			})
+		}
+		document.documentElement.classList.remove("replaying")
 	}
-	Pixels[filter]()
-	filterHistory.push(filter)
 }
 
 document.querySelectorAll(".filters button").forEach(button => {
-	button.addEventListener("click", () => filter(button.id))
-})
-
-document.querySelectorAll(".filters [type='range']").forEach(range => {
-	range.addEventListener("mousemove", () => {
-		Pixels[range.id](range.value)
+	button.addEventListener("click", async () => {
+		let filter = button.id
+		if (filter == "undo" || filter == "redo") {
+			timeline[filter]()
+			return replayTimeline(timeline)
+		}
+		timeline.add(filter)
+		Pixels[filter]()
 	})
 })
 
-let reader = new window.FileReader()
-let imageElement = document.createElement("img")
-
 reader.addEventListener("load", event => {
-	let imageLabel = document.getElementById("image_label")
+	let imageLabel = document.getElementById("imageLabel")
 	imageLabel.style.display = "none"
+
 	let canvas = document.getElementById("canvas")
-	let context = canvas.getContext("2d")
-	context.imageSmoothingEnabled = true
-	context.imageSmoothingQuality = "high"
-	context.globalCompositeOperation = "copy"
 	imageElement.src = event.target.result
-	imageElement.addEventListener("load", load)
+	imageElement.addEventListener("load", () => {
+		drawImageElementToCanvas({imageElement, canvas})
+	})
 })
 
-let fileElement = document.getElementById("file")
-
-let readFile = () => {
+function readFile() {
 	reader.readAsDataURL(fileElement.files[0])
 }
 
 fileElement.addEventListener("change", () => {
-	filterHistory = []
-	filterFuture = []
+	timeline.clear()
 	readFile()
 })
 
@@ -142,45 +112,68 @@ document.body.addEventListener("drop", event => {
 	readFile()
 })
 
-document.getElementById("yeet").addEventListener("click", event => {
+async function getForm({canvas}) {
+	return new Promise(resolve => {
+		canvas.toBlob(
+			blob => {
+				let data = new window.FormData()
+				let titleInput = document.getElementById("titleInput")
+				let secretInput = document.getElementById("secretInput")
+				data.append("photo", blob, "photo.jpg")
+				data.append("title", titleInput.value)
+				data.append("secret", secretInput.value)
+				resolve(data)
+			},
+			"image/jpeg",
+			1
+		)
+	})
+}
+
+function createOverlay({color, content}) {
+	let element = document.createElement("main")
+	element.id = "main"
+	element.style.background = color
+	element.classList.add("overlay")
+	let symbol = document.createElement("i")
+	symbol.textContent = content
+	element.append(symbol)
+	element.addEventListener("click", () => location.reload("yeet"))
+	return element
+}
+
+function setOverlay(overlay) {
+	document.documentElement.classList.add("overlay")
+	document.getElementById("main").remove()
+	document.body.append(overlay)
+}
+
+let overlays = {
+	yes: createOverlay({
+		color: "lightseagreen",
+		content: "✓",
+	}),
+	no: createOverlay({
+		color: "lightcoral",
+		content: "✗",
+	}),
+	maybe: createOverlay({
+		color: "grey",
+		content: "%",
+	}),
+}
+
+async function sendForm(form) {
+	setOverlay(overlays.maybe)
+	let response = await fetch("post", {
+		method: "POST",
+		body: form,
+	})
+	setOverlay(response.ok ? overlays.yes : overlays.no)
+}
+
+document.getElementById("yeet").addEventListener("click", async event => {
 	event.preventDefault()
 	let canvas = document.getElementById("canvas")
-	canvas.toBlob(
-		blob => {
-			let data = new window.FormData()
-			let titleInput = document.getElementById("titleInput")
-			let secretInput = document.getElementById("secretInput")
-			data.append("photo", blob, "photo.jpg")
-			data.append("title", titleInput.value)
-			data.append("secret", secretInput.value)
-			let destroy = (good = true) => {
-				document.getElementById("main").remove()
-				let next = document.createElement("main")
-				next.classList.add(good ? "yay" : "no")
-				document.documentElement.classList.add("yay")
-				let tick = document.createElement("i")
-				tick.textContent = good ? "✓" : "✗"
-				next.append(tick)
-				document.body.append(next)
-				next.addEventListener("click", () => {
-					location.reload("yeet")
-				})
-			}
-			fetch("post", {
-				method: "POST",
-				body: data,
-			})
-				.then(response =>
-					response.ok || Promise.reject()
-				)
-				.then(() => {
-					destroy("good")
-				})
-				.catch(() => {
-					destroy(false)
-				})
-		},
-		"image/jpeg",
-		1
-	)
+	sendForm(await getForm({canvas}))
 })

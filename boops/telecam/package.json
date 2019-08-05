@@ -1,23 +1,27 @@
 {
-  "name": "telecam",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "dependencies": {
-    "busboy": "^0.3.1",
-    "parcel-plugin-wasm.rs": "^1.2.11",
-    "serve-handler": "^6.1.0"
-  },
-  "devDependencies": {
-    "cssnano": "^4.1.10",
-    "node": "^10.16.0"
-  },
-  "scripts": {
-    "watch": "parcel watch form/index.html -d website -o form.html --public-url /telecam/",
-    "build": "parcel build form/index.html -d website -o form.html --public-url /telecam/",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "chee <chee@snoot.club>",
-  "license": "GPL-3.0+"
+	"name": "telecam",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"dependencies": {
+		"busboy": "^0.3.1",
+		"parcel-plugin-wasm.rs": "^1.2.11",
+		"serve-handler": "^6.1.0"
+	},
+	"devDependencies": {
+		"cssnano": "^4.1.10",
+		"node": "^10.16.0"
+	},
+	"scripts": {
+		"watch": "parcel watch form/index.html -d website -o form.html --public-url /telecam/",
+		"build": "parcel build form/index.html -d website -o form.html --public-url /telecam/",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"update-form": "rm website/{*.toml,form.*,process_pixels*,telecam_touch*,yeet*}; npm run -s build; git add website"
+	},
+	"browserslist": [
+		"last 1 firefox versions"
+	],
+	"keywords": [],
+	"author": "chee <chee@snoot.club>",
+	"license": "GPL-3.0+"
 }
