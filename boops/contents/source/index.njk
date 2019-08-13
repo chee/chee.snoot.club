@@ -1,0 +1,24 @@
+---
+layout: post.njk
+title: contents
+---
+<h1>contents</h1>
+
+<h2>posts</h2>
+
+<ul class="post-list">
+{%- for post in collections.posts | reverse %}
+	{% set absolutePostUrl %}{{ post.url | url | absoluteUrl(metadata.url) }}{% endset %}
+	<li class="post-list-item">
+		<a class="post-list-title" href="{{ absolutePostUrl }}">
+			{{ post | firstline }}
+		</a>
+		{% set postDate = post.data.date %}
+		{% set extraClass = "post-list-time" %}
+		{% include "post-date.njk" %}
+	</li>
+{% endfor %}
+</ul>
+
+<h2>feed</h2>
+<a href="atom.xml">rss</a>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en-ca">
+<meta charset="utf-8">
+<meta
+	name="viewport"
+	content="width=device-width, initial-scale=1.0">
+<link
+	rel="stylesheet"
+	href="/contents/stylesheets/main.css">
+
+<link
+	rel="alternate"
+	href="/contents/atom.xml"
+	title="adding commands to git"
+	type="application/atom+xml">
+<title>
+	adding commands to git » Chee ♥️
+</title>
+
+<header class="header">
+	<a class="header-link" href="/">
+		chee
+	</a>
+	/
+	<a class="header-link" href="/contents/">
+		contents
+	</a>
+	
+		/
+		<a class="header-link active" href="/contents/adding-commands-to-git/">
+			adding commands to git
+		</a>
+	
+</header>
+
+<main role="main" class="main">
+	
+		
+		
+<time
+	class="post-time "
+	datetime="2017-01-12T22:11:29.108Z">
+	2017-01-12
+	<small>10:11:29 p.m.</small>
+</time>
+
+	
+	<h1>adding commands to git</h1>
+<p>did you know that you can add commands to git by naming them right and placing
+them in your path?</p>
+<p>if you put this:</p>
+<pre class="language-bash"><code class="language-bash"><span class="highlight-line"><span class="token shebang important">#!/bin/sh</span></span><br><span class="highlight-line"><span class="token function">git</span> branch <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'/\*/ {print <span class="token variable">$2</span>}'</span></span></code></pre>
+<p>into a file called <code>git-current-branch</code>, make it executable and put it somewhere
+in <code>$PATH</code> (i use <code>~/bin</code> which i've added to <code>$PATH</code>), you will be able to use
+it like this:</p>
+<pre class="language-bash"><code class="language-bash"><span class="highlight-line">$ <span class="token function">git</span> current-branch</span><br><span class="highlight-line">feature/lolSausages</span></code></pre>
+<p>and bash/zsh completions will tab complete them too</p>
+<p>that example would probably make more sense to be an alias, but what about
+something like this:</p>
+<pre class="language-bash"><code class="language-bash"><span class="highlight-line"><span class="token shebang important">#!/bin/sh</span></span><br><span class="highlight-line">branch<span class="token operator">=</span><span class="token variable">$1</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">if</span> <span class="token punctuation">[</span> -z <span class="token string">"<span class="token variable">$branch</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span></span><br><span class="highlight-line">  branch<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">git</span> current-branch<span class="token variable">)</span></span></span><br><span class="highlight-line"><span class="token keyword">fi</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token function">git</span> branch -u origin/<span class="token variable">${branch}</span></span></code></pre>
+<p>ooh, or</p>
+<pre class="language-bash"><code class="language-bash"><span class="highlight-line"><span class="token shebang important">#!/bin/sh</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">function<span class="token operator">=</span><span class="token variable">$1</span></span><br><span class="highlight-line">file<span class="token operator">=</span><span class="token variable">$2</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">if</span> <span class="token punctuation">[</span> -z <span class="token string">"<span class="token variable">$function</span>"</span> <span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">[</span> -z <span class="token string">"<span class="token variable">$file</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span></span><br><span class="highlight-line">  <span class="token keyword">echo</span> <span class="token string">'usage: git log-function &lt;function> &lt;file>'</span></span><br><span class="highlight-line">  <span class="token keyword">exit</span> 1</span><br><span class="highlight-line"><span class="token keyword">fi</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token function">git</span> log -L <span class="token string">":<span class="token variable">$function</span>:<span class="token variable">$file</span>"</span></span></code></pre>
+<p>i'm sure you can come up with something more useful</p>
+
+</main>

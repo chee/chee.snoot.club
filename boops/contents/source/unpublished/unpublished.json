@@ -1,0 +1,5 @@
+{
+	"tags": ["unpublished"],
+	"layout": "post.njk",
+	"permalink": "/{{ page.fileSlug }}/index.html"
+}

@@ -1,0 +1,229 @@
+<!doctype html>
+<META charset=utf-8>
+<TITLE>Chee ♥️</TITLE>
+<META name=viewport content=width=device-width,initial-scale=1>
+<LINK rel="shortcut icon" href="./favicon.ico" type="image/png">
+
+<STYLE>
+	::selection {
+		background: #fe8;
+		color: #333;
+	}
+
+	@keyframes batenblink {
+		0%,
+		80% {
+			color: #f36;
+		}
+
+		100% {
+			color: #fe8;
+		}
+	}
+
+	@keyframes winglight {
+		0%,
+		80% {
+			color: #000;
+		}
+
+		100% {
+			color: #606;
+		}
+	}
+
+	@keyframes wobble {
+		0%, 40% {
+			transform: translateX(-1px);
+		}
+
+		22%, 66% {
+			transform: translateX(4px);
+		}
+
+		55%, 88% {
+			transform: translateY(2px);
+			transform: translateX(-2px);
+		}
+	}
+
+	@keyframes shake {
+		0%, 50% {
+			transform: translate(-2px, -2px);
+		}
+
+		33%, 66% {
+			transform: translate(2px, 2px);
+		}
+
+		25%, 75% {
+			transform: translate(2px, -2px);
+		}
+
+		100% {
+			transform: translate(-2px, 2px);
+		}
+	}
+
+	html {
+		font-family: avenir next, avenir, din, sans-serif;
+	}
+
+	@media tv {
+		html::before {
+			content: "i'm on tv!";
+			display: block;
+			animation: batenblink 0.2s infinite, wobble .5s infinite;
+		}
+	}
+
+	@media (min-width: 300px) {
+		html {
+			margin: 0.8em;
+			font-size: 1.1em;
+		}
+	}
+
+	@media (min-width: 555px) {
+		html {
+			margin: 1.5em;
+			font-size: 1.5em;
+		}
+	}
+
+	@media (min-width: 777px) {
+		html {
+			margin: 2em;
+			font-size: 2em;
+		}
+	}
+
+	.intro {
+		text-align: center;
+	}
+
+	.chee-name {
+		display: inline-block;
+		margin: .5em auto;
+		padding: 0 0.8ex;
+		font-family: futura, comic sans ms, fantasy, serif;
+		font-weight: 200;
+		font-size: 1.6em;
+		border: 2px solid pink;
+		box-shadow: 0 0 2px 2px #fe8;
+		text-align: center;
+		animation: batenblink 1.55s alternate infinite ease, wobble 100s infinite;
+		quotes: "\201C" "\201D";
+		background: white;
+	}
+
+	.chee-name::before,
+	.chee-name::after {
+		color: black;
+		animation: winglight 1.5s alternate infinite ease;
+		font-family: baskerville, times new roman, serif;
+		font-size: 1.4em;
+		text-shadow: -2px 2px pink;
+	}
+
+	a {
+		color: #09f;
+	}
+
+	a:visited {
+		color: #f39;
+	}
+
+	.leavers-link {
+		display: inline-block;
+		vertical-align: top;
+		width: 80%;
+	}
+
+	.leavers-link:hover {
+		animation: shake 0.2s infinite ease;
+	}
+
+	li {
+		position: relative;
+	}
+
+	li small {
+		display: block;
+		position: absolute;
+	}
+
+	li:last-child .leavers-link::first-letter {
+		text-transform: lowercase;
+	}
+
+	li:last-child::before {
+		content: "Or,‍ ‍";
+	}
+</STYLE>
+
+<MAIN>
+	<P class="intro">
+		<Q
+			cite="/"
+			class="chee-name"> chee rabbits </Q>
+	</P>
+
+	<UL>
+		<LI>
+			<A
+				rel=me
+				title="various crimes"
+				class=leavers-link
+				href=https://github.com/chee>
+				View chee's computer program source code
+			</A>
+		</LI>
+		<LI>
+			<A
+				rel=me
+				title="cute things for me and baby and everyone"
+				class=leavers-link
+				href=https://github.com/snootclub>
+				View snootclub projects
+			</A>
+		</LI>
+		<LI>
+			<A
+				title="posts and boasts from ghosts"
+				class=leavers-link
+				href=/contents/>
+				View chee's contents
+			</A>
+		</LI>
+		<LI>
+			<A
+				title="photos of boats, goats, ghosts and oats"
+				class=leavers-link
+				href=/telecam/>
+				View chee's telecam
+			</A>
+		</LI>
+		<LI>
+			<A
+				rel=me
+				title="a kind of on-line diary"
+				class=leavers-link
+				href=https://twitter.com/snootgirl>
+				Visit chee's Twitter.com profile
+			</A>
+			<SMALL>
+
+			</SMALL>
+		</LI>
+		<LI>
+			<A
+				rel=me
+				title="a kind of on-line postal service"
+				class=leavers-link
+				href=mailto:chee-front@snoot.club>
+				Contact chee via E-Mail
+			</A>
+		</LI>
+	</UL>
+</MAIN>
