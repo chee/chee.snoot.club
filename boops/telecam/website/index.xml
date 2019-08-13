@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet href="styles.css"?>
+<?xml-stylesheet href="/telecam/styles.css"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>chee/telecam</title>
@@ -3940,6 +3940,29 @@ floor-messing
 				width="500"
 				height="500"
 				src="https://chee.snoot.club/telecam/photos/f7n0ptua5xpfs3ntsmh03n.jpg"
+			/>
+		</item>
+		<item>
+			<xhtml:a
+				xmlns:xhtml="http://www.w3.org/1999/xhtml"
+				id="vq5t6mwalrfmm4lf0kin"
+			/>
+			<title>
+				chibi-robo!
+			</title>
+			<pubDate>
+				Fri, 09 Aug 2019 16:37:10 GMT
+			</pubDate>
+			<link>https://chee.snoot.club/telecam/#vq5t6mwalrfmm4lf0kin</link>
+			<guid isPermaLink="false">vq5t6mwalrfmm4lf0kin</guid>
+			<description>
+				&lt;img src="https://chee.snoot.club/telecam/photos/vq5t6mwalrfmm4lf0kin.jpg"&gt;
+			</description>
+			<xhtml:img
+				xmlns:xhtml="http://www.w3.org/1999/xhtml"
+				width="500"
+				height="500"
+				src="https://chee.snoot.club/telecam/photos/vq5t6mwalrfmm4lf0kin.jpg"
 			/>
 		</item>
 	</channel>
